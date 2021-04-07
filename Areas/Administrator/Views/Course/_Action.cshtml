@@ -1,0 +1,138 @@
+﻿@model MySoftCorporation.Areas.Administrator.Models.CourseActionModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">@ViewContext.RouteData.Values["controller"].ToString() </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">× </span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <form role="form" id="actionForm">
+                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Title *</label>
+                            <input type="text" class="form-control" value="@Model.Title" name="Title" minlength="5" maxlength="200" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Duration *</label>
+                            <input type="number" class="form-control" value="@Model.Duration" name="Duration" min="0" max="50" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Fee *</label>
+                            <input type="number" class="form-control" value="@Model.Fee" name="Fee" min="0" max="100000" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Picture *</label>
+                            <input type="file" id="selectedPicture" name="Pictures" class="form-control" multiple value="@Model.Fee" >
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="PictureArea">
+                    <input type="hidden" name="PictureIDs" id="PictureIDs"/>
+                    @if (Model.CoursePictures != null && Model.CoursePictures.Count > 0 )
+                    {
+                        foreach (var picture in Model.CoursePictures)
+                        {
+                            <img src="~/Images/Course/@picture.Picture.URL" data-id="@picture.PictureID" height="100" width="100" />
+                        }
+                    }
+                </div>
+            </form>
+            <div id="feedBack"></div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
+            <button type="button" id="actionButton"   class="btn btn-primary btn-flat" ><i class="fa fa-save mr-1"></i> Save changes</button>
+        </div>
+    </div>
+       <div id="ImageAreaTemplate">
+           <img height="80"  width="80" onclick="RemoveMe(this)" />
+       </div>
+    <script>
+
+        $("#selectedPicture").change(function (e) {
+            var files = this.files;
+            var formData = new FormData();            
+            for (var i = 0; i < files.length; i++) {
+                formData.append("Picure", files[i]);
+            }
+            
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UploadPictures","Dashboard")",
+                data: formData,
+                processData: false,
+                contentType : false,
+                success: function (response) {
+                    for (var i = 0; i < response.length; i++) {
+                        var picture = response[i]
+                        var $imageHTML = $("#ImageAreaTemplate").clone();
+                        $imageHTML.find("img").attr("src", "/Images/Course/"+picture.URL);
+                        $imageHTML.find("img").attr("data-id", picture.ID);
+                        $("#PictureArea").append($imageHTML);
+                    }
+                },
+                error: function (error) {
+                    alert(error);  
+                }
+            });
+        });
+        $("#actionButton").click(function () {
+            var pictureIDs = [];
+            $("#PictureArea img").each(function (index, element) {
+                // element == this
+                var img = $(element).attr("data-id");
+                pictureIDs.push(img);
+            });
+            $("#PictureIDs").val(pictureIDs.join());
+           
+            var myForm = $("#actionForm");
+            myForm.validate();
+            if (myForm.valid()) {
+                $(this).prop("disabled", true);
+                $("#feedBack").html("<div class='text-bold text-warning'>Saving Please Wait!</div>");
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Action", ViewContext.RouteData.Values["controller"].ToString())",
+                    data: myForm.serialize()
+                })
+                    .done(function (response) {
+                        if (response.Success) {
+                            location.reload();
+                        }
+                        else {
+                            $("#actionButton").prop("disabled", false);
+                            $("#feedBack").html("<div class='text-bold text-danger'>" + response.Msg + "!</div>");
+                        }
+
+                    });
+            }
+        })
+        function RemoveMe(element){
+            element.remove();
+        }
+    </script>
+    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
+
+}
+
+

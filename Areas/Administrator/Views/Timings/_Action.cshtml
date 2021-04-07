@@ -1,0 +1,83 @@
+﻿@model MySoftCorporation.Areas.Administrator.Models.TimingActionModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">@ViewContext.RouteData.Values["controller"].ToString() </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">× </span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <form role="form" id="actionForm">
+                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Day *</label>
+                            <input type="text" class="form-control" value="@Model.Day" name="Day" minlength="5" maxlength="200" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>No *</label>
+                            <input type="number" class="form-control" value="@Model.Number" name="Number" min="1" max="7" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Opening Time *</label>
+                            <input type="time" class="form-control" value="@Model.OpeningTime.ToString("HH:mm")" name="OpeningTime"  required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Closing Time *</label>
+                            <input type="time" class="form-control" value="@Model.ClosingTime.ToString("HH:mm")" name="ClosingTime"  required>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="feedBack"></div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
+            <button type="button" id="actionButton"   class="btn btn-primary btn-flat" ><i class="fa fa-save mr-1"></i> Save changes</button>
+        </div>
+    </div>
+       
+    <script>
+        $("#actionButton").click(function () {
+            var myForm = $("#actionForm");
+            myForm.validate();
+            if (myForm.valid()) {
+                $(this).prop("disabled", true);
+                $("#feedBack").html("<div class='text-bold text-warning'>Saving Please Wait!</div>");
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Action", ViewContext.RouteData.Values["controller"].ToString())",
+                    data: myForm.serialize()
+                })
+                    .done(function (response) {
+                        if (response.Success) {
+                            location.reload();
+                        }
+                        else {
+                            $("#actionButton").prop("disabled", false);
+                            $("#feedBack").html("<div class='text-bold text-danger'>" + response.Msg + "!</div>");
+                        }
+
+                    });
+            }
+        })
+    </script>
+    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
+
+}
+
+

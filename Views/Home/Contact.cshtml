@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    string Number = "+92-310-0919980";
+    string Address = "Office # 17, Al-Noor Plaza Near Expression Stores Mardan";
+    string SupportEmail = "support@mysoftcorporation.com.pk";
+    string MarketingEmail = "marketing@mysoftcorporation.com.pk";
+}
+<address>
+    @Address
+    <abbr title="Phone">P:</abbr>
+    @Number
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">@SupportEmail</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">@MarketingEmail</a>
+</address>

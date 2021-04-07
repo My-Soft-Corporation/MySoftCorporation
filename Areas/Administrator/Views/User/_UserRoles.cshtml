@@ -1,0 +1,151 @@
+﻿@model MySoftCorporation.Areas.Administrator.Models.UserRoleModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">@ViewContext.RouteData.Values["controller"].ToString() </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">× </span>
+            </button>
+
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12" id="AssignFeedback">
+
+                </div>
+            </div>
+            @if (Model.UserRoles != null && Model.UserRoles.Count() > 0)
+            {
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Already Assignable Roles</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in Model.UserRoles)
+                                {
+                                    <tr>
+                                        <td>@role.Name</td>
+                                        <td>
+                                            <button data-href="@Url.Action("UserRoleOperation",ViewContext.RouteData.Values["controller"].ToString(),new { Operation = "Delete", UserID = Model.UserID, RoleID = role.Id  })"
+                                                    class="btnAssignRole btn btn-sm btn-flat btn-danger">
+                                                <i class="fas fa-user-times mr-1"></i> Roles
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Oops!</h5>
+                            No Role is Assigned To this User.
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.Roles != null && Model.Roles.Count() > 0)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Assignable Roles</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in Model.Roles)
+                                {
+
+                                    <tr>
+                                        <td>@role.Name</td>
+                                        <td>
+                                            <button data-href="@Url.Action("UserRoleOperation",ViewContext.RouteData.Values["controller"].ToString(),new { Operation = "Assign", UserID = Model.UserID, RoleID = role.Id  })"
+                                                    class="btnAssignRole btn btn-sm btn-flat btn-success">
+                                                <i class="fas fa-user-check mr-1"></i> Assign User Role
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Oops!</h5>
+                            No Roles Available for Assign.
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-danger btn-sm btn-flat " data-dismiss="modal"><i class="fa fa-window-close mr-1"></i>  Close</button>
+        </div>
+    </div>
+
+    <script>
+        $(".btnAssignRole").click(function (e) {
+            $.ajax({
+                url: $(this).attr("data-href"),
+                type: "POST"
+            })
+                .done(function (response) {
+                    if (response.Success) {
+                        $.ajax({
+                            url: "@Url.Action("UserRoles",ViewContext.RouteData.Values["controller"].ToString(),new { ID = Model.UserID })",
+                            type: "GET"
+                        })
+                            .done(function (response) {
+                                $("#deleteModalContent").html(response);
+                            });
+                    }
+                    else {
+                        $("#AssignFeedback").html('' +
+                            '<div class= "alert alert-danger alert-dismissible" > <button type="button" class="close"' +
+                            'data-dismiss="alert" aria-hidden="true" >×</button> '
+                            + '<h5><i class="icon fas fa-ban"></i> Error !</h5>' + response.Error + '</div >');
+                    }
+                });
+
+        });
+    </script>
+
+}
+
+
+

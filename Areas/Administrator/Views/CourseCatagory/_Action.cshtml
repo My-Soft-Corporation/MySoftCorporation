@@ -1,0 +1,57 @@
+﻿@model MySoftCorporation.Areas.Administrator.Models.CourseCategoryActionModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">@ViewContext.RouteData.Values["controller"].ToString() </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">× </span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <form role="form" id="actionForm">
+                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Title *</label>
+                            <input type="text" class="form-control" value="@Model.Name" name="Name" minlength="5" maxlength="200" required>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
+            <button type="button" id="actionButton" class="btn btn-primary btn-flat"><i class="fa fa-save mr-1"></i> Save changes</button>
+        </div>
+    </div>
+
+    <script>
+        $("#actionButton").click(function () {
+            var myForm = $("#actionForm");
+            myForm.validate();
+            if (myForm.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Action", ViewContext.RouteData.Values["controller"].ToString())",
+                    data: myForm.serialize()
+                })
+                    .done(function (response) {
+                        if (response.Success) {
+                            location.reload();
+                        }
+                        else {
+                            $("#feedBack").html(response.Msg);
+                        }
+
+                    });
+            }
+        })
+    </script>
+    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
+
+}

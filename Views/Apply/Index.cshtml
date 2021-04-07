@@ -1,0 +1,196 @@
+﻿@model MySoftCorporation.Models.StudentsActionModel
+@{
+    ViewBag.Title = "Apply";
+}
+@if (Model != null && Model.Cities.Count() > 0 && Model.BloodGroups.Count() > 0)
+{
+    <div style="
+    margin: 10px;">
+        <h2 class="text-bold text-center" style="
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    margin-bottom: 15px;
+    padding: 5px;
+    font-weight: bolder;
+">
+            Student Application Form
+        </h2>
+        @using (Html.BeginForm("ApplyNow", "Apply", FormMethod.Post, new { id = "actionForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input value="@Model.ID" type="hidden" name="ID" />
+            <input type="hidden" name="CourseID" value="@Model.CourseID" />
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>FirstName *</label>
+                        <input type="text" class="form-control" value="@Model.FirstName" name="FirstName" minlength="3" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>LastName *</label>
+                        <input type="text" class="form-control" value="@Model.LastName" name="LastName" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>CNIC or Form B *</label>
+                        <input type="text" class="form-control" data-inputmask="'mask': '99999-9999999-9'" value="@Model.CNIC" name="CNIC" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Father Name *</label>
+                        <input type="text" class="form-control" value="@Model.FatherCNIC" name="FatherName" minlength="3" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Father CNIC  *</label>
+                        <input type="text" class="form-control" value="@Model.FatherCNIC" data-inputmask="'mask': '99999-9999999-9'" name="FatherCNIC" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Father Profession *</label>
+                        <input type="text" class="form-control" value="@Model.FatherProfession" name="FatherProfession" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Student Contact  *</label>
+                        <input type="text" class="form-control" value="@Model.StudentContact" name="StudentContact" data-inputmask="'mask': '9999-9999999'" minlength="11" maxlength="20" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Father Contact  *</label>
+                        <input type="text" class="form-control" value="@Model.FatherContact" name="FatherContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Emergency Contact *</label>
+                        <input type="text" class="form-control" value="@Model.EmergencyContact" name="EmergencyContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>DateOfBirth *</label>
+                        <input type="date" class="form-control" value="@(Model.DateOfBirth.ToString("yyyy-MM-dd"))" name="DateOfBirth" min="@DateTime.Now.AddYears(-50).ToString("yyyy-MM-dd")" max="@DateTime.Now.AddYears(-12).ToString("yyyy-MM-dd")" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>BloodGroup *</label>
+                        <select name="BloodGroupID" class="form-control" required>
+                            @if (Model.BloodGroups.Count() > 0)
+                            {
+                                foreach (var bloodGroup in Model.BloodGroups)
+                                {
+                                    <option value="@bloodGroup.BloodGroupID">@bloodGroup.Name</option>
+                                }
+                            }
+                            else
+                            {
+                                <option>No City Found!</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="margin-top: 35px;">
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <input type="radio" name="Gender" value="Male" checked> Male
+                        <input type="radio" name="Gender" value="Female"> Female
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>City *</label>
+                        <select name="CityID" class="form-control" required>
+                            @if (Model.Cities.Count() > 0)
+                            {
+                                foreach (var singleCity in Model.Cities)
+                                {
+                                    <option value="@singleCity.ID">@singleCity.Name</option>
+                                }
+                            }
+                            else
+                            {
+                                <option>No City Found!</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Present Address *</label>
+                        <textarea class="form-control" maxlength="100" rows="4" name="PresentAddress" required>
+                            @Model.PresentAddress</textarea>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Permenant Address *</label>
+                        <textarea class="form-control" maxlength="100" rows="4" name="PermenantAddress" required>
+                            @Model.PresentAddress</textarea>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="row" id="feedBack">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-dark btn-block" id="ApplyNowButton">Apply Now</button>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <div style="margin:15px"><div class="text-red text-bold">Something Unexpected happened please kindly contact it department</div></div>
+}
+@Scripts.Render("~/Scripts/inputmask/inputmask.min.js")
+@Scripts.Render("~/Scripts/inputmask/jquery.inputmask.min.js")
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+<script>
+    $(":input").inputmask();
+    $("#ApplyNowButton").click(function (e) {
+        var form = $("#actionForm");
+        form.validate();
+        if (form.valid) {
+            $("#feedBack").html("<div class='alert alert-warning'>Please Wait While We Are Saving Record Into Database</div>");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApplyNow", "Apply")",
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.Success) {
+                        $("#feedBack").html("<div class='alert alert-success'>Saved Successfully</div>");
+                    }
+                    else {
+
+                        $("#feedBack").html("<div class='alert alert-danger'>"+response.Message+"</div>");
+                    }
+                }
+            });
+
+        }
+    });
+</script>

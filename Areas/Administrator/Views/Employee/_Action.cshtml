@@ -1,0 +1,193 @@
+﻿@model MySoftCorporation.Areas.Administrator.Models.EmployeeActionModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">@ViewContext.RouteData.Values["controller"].ToString() </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">× </span>
+            </button>
+
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12" id="feedBack"></div>
+            </div>
+            <form role="form" id="actionForm">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="FirstName">User Name</label>
+                            <select class="form-control" name="@Model.UserID" @(!string.IsNullOrEmpty(Model.FirstName)? "selected disabled":string.Empty) required>
+                                @if (Model.Users != null)
+                                {
+                                    <option value="">Please Select</option>
+                                    foreach (var user in Model.Users)
+                                    {
+                                        <option value="@user.Id" @(Model.UserID == user.Id? "selected":string.Empty) >@user.UserName</option>
+                                    }
+                                }
+                                else
+                                {
+
+                                    <option>No Users!</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="FirstName">First Name</label>
+                            <input type="text" class="form-control" value="@Model.FirstName" name="FirstName" id="FirstName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="LastName">Last Name</label>
+                            <input type="text" class="form-control" name="LastName" value="@Model.LastName" id="LastName" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="CNIC">CNIC</label>
+                            <input type="number" class="form-control" name="CNIC" value="@Model.CNIC" id="CNIC" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for="Contact">Contact</label>
+                            <input type="number" class="form-control" value="@Model.Contact" name="Contact" id="Contact" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" value="@Model.Email" name="Email" id="Email"  @(!string.IsNullOrEmpty(Model.Email)? "readonly":string.Empty) placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Address">Address</label>
+                            <input type="text" class="form-control" value="@Model.PresentAddress" name="PresentAddress" id="Address" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Address">Address</label>
+                            <input type="text" class="form-control" value="@Model.PermenantAddress" name="PermenantAddress" id="PermenantAddress" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Date of Birth">Date of Birth</label>
+                            <input type="date" class="form-control" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" min="@DateTime.Now.AddYears(-100).ToString("yyyy-MM-dd")" max="@DateTime.Now.AddYears(-12).ToString("yyyy-MM-dd")" name="DateofBirth" id="Date of Birth" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for="Image">Image</label>
+                            <input type="file" class="form-control" name="Image" id="Image" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="City">City</label>
+                            <select class="form-control" id="CityID" name="CityID">
+                                @if (Model.Cities != null)
+                                {
+                                    <option>Please Select</option>
+                                    foreach (var city in Model.Cities)
+                                    {
+                                        <option value="@city.ID" @(Model.CityID == city.ID?"selected": string.Empty)>@city.Name</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="">No City</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div style="margin-top: 36px;">
+                            <div class="form-check">
+                                <label for="Gender">
+                                    Gender:
+                                    <input type="radio" name="Gender" value="Male"
+                                           @(Model.Gender == "Male" ? "checked" : string.Empty)>   Male
+                                    <input type="radio" name="Gender" value="Female" @(Model.Gender == "Female" ? "checked" : string.Empty)> Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div >
+                            <div class="form-check">
+                                <label for="BloodGroup">Blood Group  </label>
+                                <select class="form-control" name="BloodGroup" id="BloodGroup">
+                                    <option value="N/A">Please Select</option>
+                                    <option value="A+" @(Model.BloodGroup == "A+"? "selected": string.Empty)>A+</option>
+                                    <option value="A-"  @(Model.BloodGroup == "A-"? "selected": string.Empty) >A-</option>
+                                    <option value="B+"  @(Model.BloodGroup == "B+"? "selected": string.Empty)>B+</option>
+                                    <option value="B-"  @(Model.BloodGroup == "B-"? "selected": string.Empty)>B-</option>
+                                    <option value="O+"  @(Model.BloodGroup == "O+"? "selected": string.Empty)>O+</option>
+                                    <option value="O-"  @(Model.BloodGroup == "O-"? "selected": string.Empty)>O-</option>
+                                    <option value="AB+" @(Model.BloodGroup == "AB+"? "selected": string.Empty)  >AB+</option>
+                                    <option value="AB-" @(Model.BloodGroup == "AB-"? "selected": string.Empty)  >AB-</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
+            <button type="button" id="actionButton" class="btn btn-primary btn-flat"><i class="fa fa-save mr-1"></i> Save changes</button>
+        </div>
+    </div>
+
+    <script>
+        $("#actionButton").click(function () {
+            var myForm = $("#actionForm");
+            myForm.validate();
+            if (myForm.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Action", ViewContext.RouteData.Values["controller"].ToString())",
+                    data: myForm.serialize()
+                })
+                    .done(function (response) {
+                        if (response.Success) {
+                            location.reload();
+                        }
+                        else {
+                            $("#feedBack").html('' +
+                                '<div class= "alert alert-danger alert-dismissible" > <button type="button" class="close" data - dismiss="alert" aria - hidden="true" >×</button>'
+                                + '<h5><i class="icon fas fa-ban"></i> Error !</h5>' + response.Msg + '</div >');
+                        }
+
+                    });
+            }
+        })
+    </script>
+    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
+
+}
+
+

@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2566075D-4C75-431C-9F7C-0959F106A23C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MySoftCorporation.Data.Entities</RootNamespace>
+    <AssemblyName>MySoftCorporation.Data.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\202102062113075_initial.cs" />
+    <Compile Include="Migrations\202102062113075_initial.Designer.cs">
+      <DependentUpon>202102062113075_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102070634448_modifingTable.cs" />
+    <Compile Include="Migrations\202102070634448_modifingTable.Designer.cs">
+      <DependentUpon>202102070634448_modifingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102070643277_changingColumnName.cs" />
+    <Compile Include="Migrations\202102070643277_changingColumnName.Designer.cs">
+      <DependentUpon>202102070643277_changingColumnName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102070947380_addExtraPropertiesUser.cs" />
+    <Compile Include="Migrations\202102070947380_addExtraPropertiesUser.Designer.cs">
+      <DependentUpon>202102070947380_addExtraPropertiesUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102071024550_addingDepartmentForeignKey.cs" />
+    <Compile Include="Migrations\202102071024550_addingDepartmentForeignKey.Designer.cs">
+      <DependentUpon>202102071024550_addingDepartmentForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102071034215_addEmailToEmployee.cs" />
+    <Compile Include="Migrations\202102071034215_addEmailToEmployee.Designer.cs">
+      <DependentUpon>202102071034215_addEmailToEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102081741479_DeletinExtraPropertiesFromUser.cs" />
+    <Compile Include="Migrations\202102081741479_DeletinExtraPropertiesFromUser.Designer.cs">
+      <DependentUpon>202102081741479_DeletinExtraPropertiesFromUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102091721121_AddingInfoToEmployee.cs" />
+    <Compile Include="Migrations\202102091721121_AddingInfoToEmployee.Designer.cs">
+      <DependentUpon>202102091721121_AddingInfoToEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102091732302_AddForeignKeyFromEmployeeToUser.cs" />
+    <Compile Include="Migrations\202102091732302_AddForeignKeyFromEmployeeToUser.Designer.cs">
+      <DependentUpon>202102091732302_AddForeignKeyFromEmployeeToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102091832360_addingCityForeignKeytoEmployee.cs" />
+    <Compile Include="Migrations\202102091832360_addingCityForeignKeytoEmployee.Designer.cs">
+      <DependentUpon>202102091832360_addingCityForeignKeytoEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102091939097_ChangingAddedByInEmployeeToString.cs" />
+    <Compile Include="Migrations\202102091939097_ChangingAddedByInEmployeeToString.Designer.cs">
+      <DependentUpon>202102091939097_ChangingAddedByInEmployeeToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102101205306_addUniqueConstraint.cs" />
+    <Compile Include="Migrations\202102101205306_addUniqueConstraint.Designer.cs">
+      <DependentUpon>202102101205306_addUniqueConstraint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102101558465_AddingPhotoColumnToEmployee.cs" />
+    <Compile Include="Migrations\202102101558465_AddingPhotoColumnToEmployee.Designer.cs">
+      <DependentUpon>202102101558465_AddingPhotoColumnToEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102101742199_ChangingEmployeeIDToUserID.cs" />
+    <Compile Include="Migrations\202102101742199_ChangingEmployeeIDToUserID.Designer.cs">
+      <DependentUpon>202102101742199_ChangingEmployeeIDToUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102111023514_RemoveUniqueKeyFromEmployeeCityID.cs" />
+    <Compile Include="Migrations\202102111023514_RemoveUniqueKeyFromEmployeeCityID.Designer.cs">
+      <DependentUpon>202102111023514_RemoveUniqueKeyFromEmployeeCityID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102111332208_AddingCityIDandAdmissionApplication.cs" />
+    <Compile Include="Migrations\202102111332208_AddingCityIDandAdmissionApplication.Designer.cs">
+      <DependentUpon>202102111332208_AddingCityIDandAdmissionApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102111440173_AddingBloodGroup.cs" />
+    <Compile Include="Migrations\202102111440173_AddingBloodGroup.Designer.cs">
+      <DependentUpon>202102111440173_AddingBloodGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102121033105_AddingEmployeeAttendance.cs" />
+    <Compile Include="Migrations\202102121033105_AddingEmployeeAttendance.Designer.cs">
+      <DependentUpon>202102121033105_AddingEmployeeAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102121246200_AddingCompanyTable.cs" />
+    <Compile Include="Migrations\202102121246200_AddingCompanyTable.Designer.cs">
+      <DependentUpon>202102121246200_AddingCompanyTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102131018230_AddingTimingTableForOffice.cs" />
+    <Compile Include="Migrations\202102131018230_AddingTimingTableForOffice.Designer.cs">
+      <DependentUpon>202102131018230_AddingTimingTableForOffice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102141057430_AddingPicture.cs" />
+    <Compile Include="Migrations\202102141057430_AddingPicture.Designer.cs">
+      <DependentUpon>202102141057430_AddingPicture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102141458405_Modifying.cs" />
+    <Compile Include="Migrations\202102141458405_Modifying.Designer.cs">
+      <DependentUpon>202102141458405_Modifying.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102141534378_AdmissionDB.cs" />
+    <Compile Include="Migrations\202102141534378_AdmissionDB.Designer.cs">
+      <DependentUpon>202102141534378_AdmissionDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102141758355_AddingConstraintsOnAdmission.cs" />
+    <Compile Include="Migrations\202102141758355_AddingConstraintsOnAdmission.Designer.cs">
+      <DependentUpon>202102141758355_AddingConstraintsOnAdmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102160854277_PreparedAndCheckedByVoucheer.cs" />
+    <Compile Include="Migrations\202102160854277_PreparedAndCheckedByVoucheer.designer.cs">
+      <DependentUpon>202102160854277_PreparedAndCheckedByVoucheer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102160926207_AddingVoucherForeignKey.cs" />
+    <Compile Include="Migrations\202102160926207_AddingVoucherForeignKey.designer.cs">
+      <DependentUpon>202102160926207_AddingVoucherForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102191602099_AddingCourseCategoryTable.cs" />
+    <Compile Include="Migrations\202102191602099_AddingCourseCategoryTable.designer.cs">
+      <DependentUpon>202102191602099_AddingCourseCategoryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102191659532_AddingAuxToCourseCategory.cs" />
+    <Compile Include="Migrations\202102191659532_AddingAuxToCourseCategory.designer.cs">
+      <DependentUpon>202102191659532_AddingAuxToCourseCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102231319537_Modification.cs" />
+    <Compile Include="Migrations\202102231319537_Modification.designer.cs">
+      <DependentUpon>202102231319537_Modification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103311847342_PerfImpro.cs" />
+    <Compile Include="Migrations\202103311847342_PerfImpro.designer.cs">
+      <DependentUpon>202103311847342_PerfImpro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MySoftCorporationDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202102062113075_initial.resx">
+      <DependentUpon>202102062113075_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102070634448_modifingTable.resx">
+      <DependentUpon>202102070634448_modifingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102070643277_changingColumnName.resx">
+      <DependentUpon>202102070643277_changingColumnName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102070947380_addExtraPropertiesUser.resx">
+      <DependentUpon>202102070947380_addExtraPropertiesUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102071024550_addingDepartmentForeignKey.resx">
+      <DependentUpon>202102071024550_addingDepartmentForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102071034215_addEmailToEmployee.resx">
+      <DependentUpon>202102071034215_addEmailToEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102081741479_DeletinExtraPropertiesFromUser.resx">
+      <DependentUpon>202102081741479_DeletinExtraPropertiesFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102091721121_AddingInfoToEmployee.resx">
+      <DependentUpon>202102091721121_AddingInfoToEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102091732302_AddForeignKeyFromEmployeeToUser.resx">
+      <DependentUpon>202102091732302_AddForeignKeyFromEmployeeToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102091832360_addingCityForeignKeytoEmployee.resx">
+      <DependentUpon>202102091832360_addingCityForeignKeytoEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102091939097_ChangingAddedByInEmployeeToString.resx">
+      <DependentUpon>202102091939097_ChangingAddedByInEmployeeToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102101205306_addUniqueConstraint.resx">
+      <DependentUpon>202102101205306_addUniqueConstraint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102101558465_AddingPhotoColumnToEmployee.resx">
+      <DependentUpon>202102101558465_AddingPhotoColumnToEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102101742199_ChangingEmployeeIDToUserID.resx">
+      <DependentUpon>202102101742199_ChangingEmployeeIDToUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111023514_RemoveUniqueKeyFromEmployeeCityID.resx">
+      <DependentUpon>202102111023514_RemoveUniqueKeyFromEmployeeCityID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111332208_AddingCityIDandAdmissionApplication.resx">
+      <DependentUpon>202102111332208_AddingCityIDandAdmissionApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111440173_AddingBloodGroup.resx">
+      <DependentUpon>202102111440173_AddingBloodGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102121033105_AddingEmployeeAttendance.resx">
+      <DependentUpon>202102121033105_AddingEmployeeAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102121246200_AddingCompanyTable.resx">
+      <DependentUpon>202102121246200_AddingCompanyTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102131018230_AddingTimingTableForOffice.resx">
+      <DependentUpon>202102131018230_AddingTimingTableForOffice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102141057430_AddingPicture.resx">
+      <DependentUpon>202102141057430_AddingPicture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102141458405_Modifying.resx">
+      <DependentUpon>202102141458405_Modifying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102141534378_AdmissionDB.resx">
+      <DependentUpon>202102141534378_AdmissionDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102141758355_AddingConstraintsOnAdmission.resx">
+      <DependentUpon>202102141758355_AddingConstraintsOnAdmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102160854277_PreparedAndCheckedByVoucheer.resx">
+      <DependentUpon>202102160854277_PreparedAndCheckedByVoucheer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102160926207_AddingVoucherForeignKey.resx">
+      <DependentUpon>202102160926207_AddingVoucherForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102191602099_AddingCourseCategoryTable.resx">
+      <DependentUpon>202102191602099_AddingCourseCategoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102191659532_AddingAuxToCourseCategory.resx">
+      <DependentUpon>202102191659532_AddingAuxToCourseCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102231319537_Modification.resx">
+      <DependentUpon>202102231319537_Modification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103311847342_PerfImpro.resx">
+      <DependentUpon>202103311847342_PerfImpro.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\MySoft.Accounts.Entities.csproj">
+      <Project>{87637898-ba24-4ca0-8c8f-ac6c3e3c4a1b}</Project>
+      <Name>MySoft.Accounts.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\MySoft.Employee.Entities.csproj">
+      <Project>{3e2be864-1e27-425b-9b11-cf5ca78ec53e}</Project>
+      <Name>MySoft.Employee.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\MySoft.Institute.Entities.csproj">
+      <Project>{1a2dee59-0c74-4885-95d4-678f8a400e6c}</Project>
+      <Name>MySoft.Institute.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

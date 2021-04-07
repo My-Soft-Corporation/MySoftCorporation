@@ -1,0 +1,64 @@
+﻿@model MySoftCorporation.Models.CourseViewModels
+@{
+    ViewBag.Title = "Course";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="overflow-x:auto">
+            @if (Model != null && Model.Courses.Count() > 0)
+            {
+                <div>
+                    <style>
+                        .button-custom {
+                            background-color: black;
+                            color: white;
+                            font-weight: bolder;
+                        }
+                    </style>
+                    <h2>Course List For Session @DateTime.Now.ToString("yyyy")</h2>
+                    <hr />
+                    <table class="table table-hover table-bordered">
+                        <thead style="background-color: black;border-color: white;color: white;font-weight: bolder;">
+                            <tr>
+                                <th>Title</th>
+                                <th>Duration </th>
+                                <th>Fee</th>
+                                <th>Apply Now</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var course in Model.Courses)
+                            {
+                                <tr>
+                                    <td>@course.Title </td>
+                                    <td>@course.Duration Months</td>
+                                    <td>@String.Format("{0:n0}", course.Fee)</td>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <td>
+                                            <a class="btn  btn-flat btn-lg btn-block button-custom " href="@Url.Action("Index","Apply", new {Area = "", courseID = course.ID })"><i class="fas fa-bookmark"></i> Apply Now</a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-bold text-info">
+                                            <a href="@Url.Action("Register","Account")" class="btn btn-block button-custom">
+                                                <i class="fas fa-graduation-cap"></i> Register Now
+                                            </a>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <h2 class="text-center text-bold text-info">Course are Not Available Yet! But Will be available soon</h2>
+            }
+        </div>
+    </div>
+</div>

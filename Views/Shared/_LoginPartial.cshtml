@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+
+    <form action="@Url.Action("LogOff","Account")" method="post" id="logoutForm">
+        @Html.AntiForgeryToken()
+        <a href="@Url.Action("Index","Manage")" class="nav-item nav-link">Hi! @User.Identity.Name</a>
+    </form>
+    if (User.IsInRole("Administrator") || User.IsInRole("General Manager"))
+    {
+        <a href="@Url.Action("Index", "Dashboard", new { Area = "Administrator" } )" class="nav-item nav-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+    }
+    <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i> Log off</a>
+}
+else
+{
+    <a href="@Url.Action("Register","Account")" id="registerLink" class="nav-item nav-link"><i class="fas fa-user-plus"></i> Register</a>
+    <a href="@Url.Action("Login","Account")" id="loginLink" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i> Log In</a>
+}

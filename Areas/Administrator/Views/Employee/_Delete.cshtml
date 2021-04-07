@@ -1,0 +1,56 @@
+﻿@model MySoftCorporation.Areas.Administrator.Models.EmployeeActionModel
+
+@if (Model != null && Model.ID > 0)
+{
+    <div class="modal-content bg-danger">
+        <div class="modal-header">
+            <h4 class="modal-title">Delete @ViewContext.RouteData.Values["controller"].ToString() </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12" id="feedBack">
+
+                </div>
+            </div>
+            <form id="actionFormDelete">
+                <input type="hidden" value="@Model.ID" name="ID" />
+            </form>
+            <p>Are You Sure to Delete  <b>@Model.FirstName</b> from @ViewContext.RouteData.Values["controller"].ToString() ?</p>
+
+        </div>
+
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
+            <button type="button" id="actionButtonDelete" class="btn btn-danger btn-flat"><i class="fa fa-trash mr-1"></i> Delete</button>
+        </div>
+    </div>
+    <script>
+        $("#actionButtonDelete").click(function () {
+            var myForm = $("#actionFormDelete");
+            myForm.validate();
+            if (myForm.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Delete", ViewContext.RouteData.Values["controller"].ToString())",
+                    data: myForm.serialize()
+                })
+                    .done(function (response) {
+                        if (response.Success) {
+                            location.reload();
+                        }
+                        else {
+                            $("#feedBack").html(response.Msg);
+                        }
+
+                    });
+            }
+        })
+    </script>
+    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
+    <!-- /.modal-content -->
+}
+
