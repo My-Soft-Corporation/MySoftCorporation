@@ -81,10 +81,11 @@ namespace MySoftCorporation.Controllers
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    //  ViewBag.errorMessage = "You must have a confirmed email to log on.";
-                    //  //return View("Error");
-                    //return  RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
-                    return await ResendEmailConfirmationToken(user);
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    ViewBag.Message = "Check your email and confirm your account, you must be confirmed before you can log in.";
+                    return View("Info");
                 }
             }
             // This doesn't count login failures towards account lockout
@@ -111,10 +112,7 @@ namespace MySoftCorporation.Controllers
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
             await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-            // Uncomment to debug locally
-            // TempData["ViewBagLink"] = callbackUrl;
             ViewBag.Message = "Check your email and confirm your account, you must be confirmed before you can log in.";
-
             return View("Info");
         }
         //

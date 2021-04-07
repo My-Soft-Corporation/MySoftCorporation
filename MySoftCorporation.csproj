@@ -213,7 +213,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
-    <Compile Include="Areas\Administrator\Api\EmployeeAttendancesController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmissionController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CityController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CompanyController.cs" />
@@ -222,6 +221,7 @@
     <Compile Include="Areas\Administrator\Controllers\CourseController.cs" />
     <Compile Include="Areas\Administrator\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Administrator\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\EmployeeAttendanceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Administrator\Controllers\ProvinceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
@@ -237,6 +237,7 @@
     <Compile Include="Areas\Administrator\Models\CountryViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\CourseCategoryViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\CourseViewModel.cs" />
+    <Compile Include="Areas\Administrator\Models\DashboardModel.cs" />
     <Compile Include="Areas\Administrator\Models\DepartmentViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\EmployeeViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\ProvinceViewModel.cs" />
@@ -3851,6 +3852,9 @@
     <Content Include="Scripts\inputmask\inputmask.min.js" />
     <Content Include="Scripts\inputmask\jquery.inputmask.js" />
     <Content Include="Scripts\inputmask\jquery.inputmask.min.js" />
+    <Content Include="Areas\Administrator\Views\EmployeeAttendance\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\EmployeeAttendance\ClockIn.cshtml" />
+    <Content Include="Areas\Administrator\Views\EmployeeAttendance\ClockOut.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -4020,6 +4024,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administrator\Api\" />
     <Folder Include="Areas\Administrator\Data\" />
     <Folder Include="Areas\plugins\filterizr\config\" />
     <Folder Include="Areas\plugins\filterizr\FilterContainer\" />

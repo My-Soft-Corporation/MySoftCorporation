@@ -12,6 +12,15 @@ namespace MySoftCorporation.Services
 {
     public class StudentService
     {
+        private readonly MySoftCorporationDbContext _context;
+        public StudentService()
+        {
+            _context = new MySoftCorporationDbContext();
+        }
+        public async Task<int> GetCount()
+        {
+            return await _context.Students.CountAsync();
+        }
         public IEnumerable<Student> GetAll()
         {
             return new MySoftCorporationDbContext().Students.AsEnumerable();

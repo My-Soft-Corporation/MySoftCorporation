@@ -1,0 +1,53 @@
+﻿@model MySoft.Employee.Entities.Attendance.EmployeeAttendance
+@{
+    ViewBag.Title = "Clock In";
+}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Clock In</div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                @using (Html.BeginForm("ClockIn", "EmployeeAttendance", FormMethod.Post, new { @id = "myForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.IP)
+                    @Html.HiddenFor(x => x.Agent)
+                    @Html.HiddenFor(x => x.Latitude)
+                    @Html.HiddenFor(x => x.Longitude)
+                    @Html.HiddenFor(x => x.TakenById)
+                    @Html.HiddenFor(x => x.EmployeeId)
+                }
+            </div>     
+            <div id="FeedBack">
+
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" id="ClockInButton">Clock Me In Now</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#ClockInButton").click(function (e) {
+            $("#FeedBack").html("<div class='alert alert-warning'>Wait ! Make you present in while</div>");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ClockIn")",
+                data: $("#myForm").serialize(),
+                success: function (response) {
+                    if (response.IsSuccess) {
+                        window.location.replace("@Url.Action("Index")");
+                    }
+                    else {
+                        $("#FeedBack").html("<div class='alert alert-danger'>"+response.msg+"</div>");
+                    }
+                }
+            });
+
+        });
+    });
+</script>
+

@@ -20,7 +20,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="FirstName">User Name</label>
-                            <select class="form-control" name="@Model.UserID" @(!string.IsNullOrEmpty(Model.FirstName)? "selected disabled":string.Empty) required>
+                            <select class="form-control" name="UserID" @(!string.IsNullOrEmpty(Model.FirstName)? "selected disabled":string.Empty) required>
                                 @if (Model.Users != null)
                                 {
                                     <option value="">Please Select</option>
@@ -166,6 +166,9 @@
             var myForm = $("#actionForm");
             myForm.validate();
             if (myForm.valid()) {
+                $("#feedBack").html('' +
+                    '<div class= "alert alert-warning " >
+                    + '<h5><i class="icon fas fa-ban"></i> Wait !</h5>Saving Please Wait</div >');
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("Action", ViewContext.RouteData.Values["controller"].ToString())",

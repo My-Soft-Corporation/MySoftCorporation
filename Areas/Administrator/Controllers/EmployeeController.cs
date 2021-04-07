@@ -117,6 +117,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult Action(EmployeeActionModel model)
         {
             bool result;
@@ -145,7 +146,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     Agent = UserInfo.Agent(),
                     Location = UserInfo.Location(),
                     Email = model.Email,
-                    UserID = User.Identity.GetUserId(),
+                    UserID = model.UserID,
                     CityID = model.CityID
                 };
                 try

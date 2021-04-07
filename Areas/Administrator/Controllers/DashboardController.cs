@@ -1,9 +1,13 @@
-﻿using MySoft.Employee.Entities;
+﻿using Microsoft.AspNet.Identity;
+using MySoft.Employee.Entities;
+using MySoftCorporation.Areas.Administrator.Models;
 using MySoftCorporation.Helpers;
 using MySoftCorporation.Services;
+using MySoftCorporation.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
@@ -11,10 +15,26 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
     [Authorize(Roles = "General Manager,Administrator")]
     public class DashboardController : Controller
     {
+        private readonly EmployeeService _employeeService;
+        private readonly StudentService _studentService;
+        private readonly UserService _userService;
         // GET: Administrator/Dashboard
-        public ActionResult Index()
+        public DashboardController()
         {
-            return View();
+            _employeeService = new EmployeeService();
+            _studentService = new StudentService();;
+            _userService = new UserService();
+        }
+        public async Task<ActionResult> Index()
+        {
+            DashboardModel model = new DashboardModel() {
+                Employees = await _employeeService.GetCount(),
+                Students = await _studentService.GetCount(),
+                Users = await _userService.GetCount(),
+                Applications = 0
+            };
+            
+            return View(model);
         }
 
         [HttpPost]

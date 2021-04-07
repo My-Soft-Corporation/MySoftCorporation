@@ -1,15 +1,18 @@
 ﻿using MySoft.Employee.Entities;
 using MySoftCorporation.Data.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MySoftCorporation.Services
 {
     public class DashboardService
     {
+        private readonly MySoftCorporationDbContext _context;
+        public DashboardService()
+        {
+            _context = new MySoftCorporationDbContext();
+        }
+        
         public bool SavePicture(Picture picture)
         {
             MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();

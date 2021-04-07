@@ -5,11 +5,21 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MySoftCorporation.Services
 {
     public class EmployeeService
     {
+        private readonly MySoftCorporationDbContext _context;
+        public EmployeeService()
+        {
+            _context = new MySoftCorporationDbContext();
+        }
+        public async Task<int> GetCount()
+        {
+            return await _context.Employees.CountAsync();
+        }
         public IEnumerable<Employee> GetAll()
         {
             return new MySoftCorporationDbContext().Employees.AsEnumerable();
@@ -31,6 +41,12 @@ namespace MySoftCorporation.Services
             {
                 return context.Employees.FirstOrDefault(x => x.ID == ID);
             }
+        }
+        public async Task<Employee> GetByUserID(string UserID)
+        {
+
+                return await _context.Employees.Where(x=>x.UserID == UserID).SingleOrDefaultAsync();
+            
         }
 
         public (bool isSaved, string Error) Save(Employee employee)

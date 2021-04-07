@@ -18,16 +18,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @Styles.Render("~/Areas/css/Style.css")
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <style>
-        .error {
-            color: red;
-            font-weight: bolder;
-        }
-
-        input.error {
-            border: 2px solid red;
-        }
-    </style>
     @Scripts.Render("~/Areas/plugins/jquery/jquery.min.js")
 </head>
 <body class="hold-transition sidebar-mini">
@@ -186,108 +176,170 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>   Dashboard </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Department")" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>   Department</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-
-                            <a href="@Url.Action("Index","Role")" class="nav-link">
-                                <i class="nav-icon fas fa-users-cog"></i>
-                                <p>   Roles </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","User")" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>   Users </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Employee")" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>   Employee </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","CourseCatagory")" class="nav-link">
-                                <i class="nav-icon fas fa-university"></i>
-                                <p>   Course Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Course")" class="nav-link">
-                                <i class="nav-icon fas fa-university"></i>
-                                <p>   Course </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Student")" class="nav-link">
-                                <i class="nav-icon fas fa-school"></i>
-                                <p>   Student </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Admission")" class="nav-link">
-                                <i class="nav-icon fas fa-graduation-cap"></i>
-                                <p>  Admission </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Company")" class="nav-link">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>  Company </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Timings")" class="nav-link">
-                                <i class="nav-icon fas fa-clock"></i>
-                                <p> Office Timing</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","VoucherType")" class="nav-link">
-                                <i class="nav-icon fas fa-universal-access"></i>
-                                <p> Voucher Types</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Voucher")" class="nav-link">
-                                <i class="nav-icon fas fa-receipt"></i>
-                                <p> Voucher</p>
-                            </a>
-                        </li>
-                        <!-- Add icons to the links using the .nav-icon class  with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview ">
+                        <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-location-arrow"></i>
+                                <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
-                                    Locations                                    <i class="right fas fa-angle-left"></i>
+                                    Man Power
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview" style="display: none;">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index","Country")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Country</p>
+                                    <a href="@Url.Action("Index","Department")" class="nav-link">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>   Department</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index","Province")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Province</p>
+
+                                    <a href="@Url.Action("Index","Role")" class="nav-link">
+                                        <i class="nav-icon fas fa-users-cog"></i>
+                                        <p>   Roles </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index","City")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>City</p>
+                                    <a href="@Url.Action("Index","User")" class="nav-link">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>   Users </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Employee")" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>   Employee </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","EmployeeAttendance")" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>   Attendance </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Timings")" class="nav-link">
+                                        <i class="nav-icon fas fa-clock"></i>
+                                        <p> Office Timing</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview ">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-location-arrow"></i>
+                                        <p>
+                                            Locations <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview" style="display: none;">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index","Country")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Country</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index","Province")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Province</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index","City")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>City</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Course
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","CourseCatagory")" class="nav-link">
+                                        <i class="nav-icon fas fa-university"></i>
+                                        <p>   Course Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Course")" class="nav-link">
+                                        <i class="nav-icon fas fa-university"></i>
+                                        <p>   Course </p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Students
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Student")" class="nav-link">
+                                        <i class="nav-icon fas fa-school"></i>
+                                        <p>   Student </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Admission")" class="nav-link">
+                                        <i class="nav-icon fas fa-graduation-cap"></i>
+                                        <p>  Admission </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Company
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Info")" class="nav-link">
+                                        <i class="nav-icon fas fa-building"></i>
+                                        <p>  Company </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Accounts
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","VoucherType")" class="nav-link">
+                                        <i class="nav-icon fas fa-universal-access"></i>
+                                        <p> Voucher Types</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Voucher")" class="nav-link">
+                                        <i class="nav-icon fas fa-receipt"></i>
+                                        <p> Voucher</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
