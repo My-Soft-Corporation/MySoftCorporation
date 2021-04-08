@@ -10,10 +10,12 @@
             </button>
         </div>
         <div class="modal-body">
-
             <form role="form" id="actionForm">
-                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
-                <div class="row">
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@Model.Id" name="Id" id="Id" />
+                <input type="hidden" name="Latitude" id="Latitude" />
+                <input type="hidden" name="Longitude" id="Longitude" />
+                <div class="row form-group">
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>Title *</label>
@@ -22,21 +24,24 @@
                     </div>
                 </div>
             </form>
+            <div class="row" id="FeedBack"></div>
         </div>
         <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
             <button type="button" id="actionButton" class="btn btn-primary btn-flat"><i class="fa fa-save mr-1"></i> Save changes</button>
         </div>
     </div>
-
+    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
     <script>
         $("#actionButton").click(function () {
             var myForm = $("#actionForm");
             myForm.validate();
             if (myForm.valid()) {
+                $("#FeedBack").html("<div class='alert alert-warning'><strong>Wait!</strong>Saving Please Wait</div>");
                 $.ajax({
                     type: "POST",
-                    url: "@Url.Action("Action", ViewContext.RouteData.Values["controller"].ToString())",
+                    url: "@Url.Action("Action", "VoucherType")",
                     data: myForm.serialize()
                 })
                     .done(function (response) {
@@ -44,14 +49,13 @@
                             location.reload();
                         }
                         else {
-                            $("#feedBack").html(response.Msg);
+                            $("#FeedBack").html("<div class='alert alert-danger'><strong>Failed!</strong>" + response.Msg + "</div>");
                         }
 
                     });
             }
         })
     </script>
-    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
-    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
+
 
 }

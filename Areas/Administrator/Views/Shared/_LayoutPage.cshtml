@@ -19,6 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     @*@Scripts.Render("~/Areas/plugins/jquery/jquery.min.js")*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -410,8 +412,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @*@Scripts.Render("~/Areas/plugins/jquery/jquery.min.js")*@
     <!-- Bootstrap 4 -->
     @*@Scripts.Render("~/Areas/plugins/bootstrap/js/bootstrap.bundle.min.js")*@
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+  
 
     @RenderSection("scripts", required: false)
     <!-- AdminLTE App -->

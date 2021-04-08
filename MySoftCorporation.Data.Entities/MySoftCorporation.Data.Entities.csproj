@@ -47,9 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="MySoft.Accounts.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MySoft.Accounts.Entities, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\bin\Release\MySoft.Accounts.Entities.dll</HintPath>
+      <HintPath>..\DLLs\MySoft.Accounts.Entities.dll</HintPath>
     </Reference>
     <Reference Include="MySoft.Employee.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -198,6 +198,14 @@
     <Compile Include="Migrations\202104081233332_LedgerImprovmenet.designer.cs">
       <DependentUpon>202104081233332_LedgerImprovmenet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104081615081_VoucherType_LocationParam.cs" />
+    <Compile Include="Migrations\202104081615081_VoucherType_LocationParam.designer.cs">
+      <DependentUpon>202104081615081_VoucherType_LocationParam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104081811324_Voucher-Add.cs" />
+    <Compile Include="Migrations\202104081811324_Voucher-Add.designer.cs">
+      <DependentUpon>202104081811324_Voucher-Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySoftCorporationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -302,6 +310,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104081233332_LedgerImprovmenet.resx">
       <DependentUpon>202104081233332_LedgerImprovmenet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104081615081_VoucherType_LocationParam.resx">
+      <DependentUpon>202104081615081_VoucherType_LocationParam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104081811324_Voucher-Add.resx">
+      <DependentUpon>202104081811324_Voucher-Add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

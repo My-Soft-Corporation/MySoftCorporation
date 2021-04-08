@@ -1,4 +1,4 @@
-﻿using MySoft.Employee.Entities;
+﻿using MySoft.Accounts.Entities.Models;
 using MySoftCorporation.Areas.Administrator.Models;
 using MySoftCorporation.Helpers;
 using MySoftCorporation.Services;
@@ -51,7 +51,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             }
             JsonResult jsonResult = new JsonResult
             {
-                Data = result ? (new { Success = true, Msg = msg }) : (new { Success = false, Msg = msg }),
+                Data = new { Success = result, Msg = msg }
             };
             return jsonResult;
         }
@@ -70,24 +70,27 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult Action(VoucherTypeActionModel model)
         {
             bool result;
-            VoucherType objectFirst;
+            VoucherType voucherType = new VoucherType()
+            {
+                Name = model.Name,
+                AddedById = UserHelperInfo.GetUserId(),
+                IP = UserInfo.IP(),
+                Agent = UserInfo.Agent(),
+                Longitude = model.Longitude,
+                Latitude = model.Latitude,
+                ModifiedOn = DateTime.Now
+            };
             string msg = "";
             if (model.Id > 0)
             {
-                objectFirst = service.GetByID(model.Id);
-                objectFirst.Id= model.Id;
-                objectFirst.Name = model.Name;
-                objectFirst.AddedById = UserHelperInfo.GetUserId();
-                objectFirst.DateTime = DateTime.Now;
-                objectFirst.IP = UserInfo.IP();
-                objectFirst.Agent = UserInfo.Agent();
-                objectFirst.Location = UserInfo.Location();
+                voucherType.Id = model.Id;
                 try
                 {
-                    result = service.Update(objectFirst);
+                    result = service.Update(voucherType);
                 }
                 catch (Exception exc)
                 {
@@ -97,18 +100,9 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             }
             else
             {
-                objectFirst = new VoucherType
-                {
-                    Name = model.Name,
-                    DateTime = DateTime.Now,
-                    AddedById = UserHelperInfo.GetUserId(),
-                    IP = UserInfo.IP(),
-                    Agent = UserInfo.Agent(),
-                    Location = UserInfo.Location(),
-                };
                 try
                 {
-                    result = service.Save(objectFirst);
+                    result = service.Save(voucherType);
                 }
                 catch (Exception exc)
                 {

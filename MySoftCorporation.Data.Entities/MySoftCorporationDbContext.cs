@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using MySoft.Account.Entities;
 using MySoft.Accounts.Entities.Models;
 using MySoft.Employee.Entities;
 using MySoft.Employee.Entities.Attendance;
@@ -10,7 +11,7 @@ namespace MySoftCorporation.Data.Entities
 {
     public class MySoftCorporationDbContext : IdentityDbContext<User>
     {
-        public MySoftCorporationDbContext() : base("ServerOnLocal")
+        public MySoftCorporationDbContext() : base("ServerOnServer")
         {
         }
 
@@ -37,6 +38,7 @@ namespace MySoftCorporation.Data.Entities
         public DbSet<EmployeePicture> EmployeePictures { get; set; }
         public DbSet<Admission> Admissions { get; set; }
         public DbSet<Ledger> Ledgers { get; set; }
+        public DbSet<Voucher> Vouchers{ get; set; }
         public DbSet<VoucherType> VoucherTypes { get; set; }
         public DbSet<CourseCategory> CourseCategories { get; set; }
     }

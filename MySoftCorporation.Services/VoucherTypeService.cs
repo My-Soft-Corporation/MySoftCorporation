@@ -1,4 +1,5 @@
 ﻿
+using MySoft.Accounts.Entities.Models;
 using MySoft.Employee.Entities;
 using MySoftCorporation.Data.Entities;
 using System.Collections.Generic;
@@ -12,13 +13,13 @@ namespace MySoftCorporation.Services
         public IEnumerable<VoucherType> GetAll()
         {
             var context = new MySoftCorporationDbContext();
-            return context.VoucherTypes.AsEnumerable();
+            return context.VoucherTypes.Include(x=>x.AddedBy).AsEnumerable();
         }
 
         public IEnumerable<VoucherType> Search(string Search)
         {
             MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            var voucherTypes = mySoftCorporationDbContext.VoucherTypes.AsQueryable();
+            var voucherTypes = mySoftCorporationDbContext.VoucherTypes.Include(x => x.AddedBy).AsQueryable();
             voucherTypes = voucherTypes.Where(a => a.Name == Search);
             return voucherTypes.AsEnumerable();
         }

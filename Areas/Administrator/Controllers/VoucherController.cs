@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MySoft.Account.Entities;
 using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
@@ -12,7 +9,8 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         // GET: Administrator/Voucher
         public ActionResult Index()
         {
-            return View();
+            Voucher voucher = new Voucher();
+            return View(voucher);
         }
     }
 }
