@@ -11,22 +11,20 @@
 
         </div>
         <div class="modal-body">
-            <div class="row">
-                <div class="col-md-12" id="feedBack"></div>
-            </div>
             <form role="form" id="actionForm">
+                @Html.AntiForgeryToken()
                 <input type="hidden" name="ID" value="@Model.ID" />
                 <div class="row form-group">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="FirstName">User Name</label>
-                            <select class="form-control" name="UserID" @(!string.IsNullOrEmpty(Model.FirstName)? "selected disabled":string.Empty) required>
+                            <select class="form-control" name="UserID" @(!string.IsNullOrEmpty(Model.FirstName) ? "selected disabled" : string.Empty) required>
                                 @if (Model.Users != null)
                                 {
                                     <option value="">Please Select</option>
                                     foreach (var user in Model.Users)
                                     {
-                                        <option value="@user.Id" @(Model.UserID == user.Id? "selected":string.Empty) >@user.UserName</option>
+                                        <option value="@user.Id" @(Model.UserID == user.Id ? "selected" : string.Empty)>@user.UserName</option>
                                     }
                                 }
                                 else
@@ -34,7 +32,7 @@
 
                                     <option>No Users!</option>
                                 }
-                            </select>   
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -69,7 +67,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Email">Email</label>
-                            <input type="email" class="form-control" value="@Model.Email" name="Email" id="Email"  @(!string.IsNullOrEmpty(Model.Email)? "readonly":string.Empty) placeholder="" required>
+                            <input type="email" class="form-control" value="@Model.Email" name="Email" id="Email" @(!string.IsNullOrEmpty(Model.Email) ? "readonly" : string.Empty) placeholder="" required>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -110,7 +108,7 @@
                                     <option>Please Select</option>
                                     foreach (var city in Model.Cities)
                                     {
-                                        <option value="@city.ID" @(Model.CityID == city.ID?"selected": string.Empty)>@city.Name</option>
+                                        <option value="@city.ID" @(Model.CityID == city.ID ? "selected" : string.Empty)>@city.Name</option>
                                     }
                                 }
                                 else
@@ -133,34 +131,36 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div >
+                        <div>
                             <div class="form-check">
                                 <label for="BloodGroup">Blood Group  </label>
                                 <select class="form-control" name="BloodGroup" id="BloodGroup">
                                     <option value="N/A">Please Select</option>
-                                    <option value="A+" @(Model.BloodGroup == "A+"? "selected": string.Empty)>A+</option>
-                                    <option value="A-"  @(Model.BloodGroup == "A-"? "selected": string.Empty) >A-</option>
-                                    <option value="B+"  @(Model.BloodGroup == "B+"? "selected": string.Empty)>B+</option>
-                                    <option value="B-"  @(Model.BloodGroup == "B-"? "selected": string.Empty)>B-</option>
-                                    <option value="O+"  @(Model.BloodGroup == "O+"? "selected": string.Empty)>O+</option>
-                                    <option value="O-"  @(Model.BloodGroup == "O-"? "selected": string.Empty)>O-</option>
-                                    <option value="AB+" @(Model.BloodGroup == "AB+"? "selected": string.Empty)  >AB+</option>
-                                    <option value="AB-" @(Model.BloodGroup == "AB-"? "selected": string.Empty)  >AB-</option>
+                                    <option value="A+" @(Model.BloodGroup == "A+" ? "selected" : string.Empty)>A+</option>
+                                    <option value="A-" @(Model.BloodGroup == "A-" ? "selected" : string.Empty)>A-</option>
+                                    <option value="B+" @(Model.BloodGroup == "B+" ? "selected" : string.Empty)>B+</option>
+                                    <option value="B-" @(Model.BloodGroup == "B-" ? "selected" : string.Empty)>B-</option>
+                                    <option value="O+" @(Model.BloodGroup == "O+" ? "selected" : string.Empty)>O+</option>
+                                    <option value="O-" @(Model.BloodGroup == "O-" ? "selected" : string.Empty)>O-</option>
+                                    <option value="AB+" @(Model.BloodGroup == "AB+" ? "selected" : string.Empty)>AB+</option>
+                                    <option value="AB-" @(Model.BloodGroup == "AB-" ? "selected" : string.Empty)>AB-</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </form>
-
+            <div class="row">
+                <div class="col-md-12" id="feedBack"></div>
+            </div>
         </div>
         <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
             <button type="button" id="actionButton" class="btn btn-primary btn-flat"><i class="fa fa-save mr-1"></i> Save changes</button>
         </div>
     </div>
-
+    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
     <script>
         $("#actionButton").click(function () {
             var myForm = $("#actionForm");
@@ -188,8 +188,7 @@
             }
         })
     </script>
-    @Scripts.Render("~/Areas/plugins/jquery-validation/jquery.validate.min.js")
-    @Scripts.Render("~/Areas/plugins/jquery-validation/additional-methods.min.js")
+
 
 }
 
