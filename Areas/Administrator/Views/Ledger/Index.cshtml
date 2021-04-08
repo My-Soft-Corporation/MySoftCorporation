@@ -1,0 +1,104 @@
+﻿@model MySoftCorporation.Areas.Administrator.Models.LedgerDTO
+@{
+    ViewBag.Title = "Ledgers";
+}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <div class="container">
+                    @using (Html.BeginForm("Action", "Ledger", FormMethod.Post, new { @id = "myForm" }))
+                    {
+                        @Html.ValidationSummary()
+                        @Html.AntiForgeryToken()
+                        @ViewBag.Message
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(x => x.Title)
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    @Html.LabelFor(x => x.Code)
+                                    @Html.TextBoxFor(x => x.Code, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Code, "", new { @class = "text-danger " })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(x => x.Debit)
+                                @Html.TextBoxFor(x => x.Debit, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Debit, "", new { @class = "text-danger " })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(x => x.Credit)
+                                @Html.TextBoxFor(x => x.Credit, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Credit, "", new { @class = "text-danger " })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(x => x.Balance)
+                                @Html.TextBoxFor(x => x.Balance, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Balance, "", new { @class = "text-danger " })
+                            </div>
+                            <div>
+                                @Html.HiddenFor(x=>x.Latitude)
+                                @Html.HiddenFor(x=>x.Longitude)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" class="btn btn-default" value="Save" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model != null && Model.Ledgers.Count() > 0)
+            {
+                <div style="overflow:auto;">
+                    <table class="table table-custom table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td>@Html.DisplayNameFor(x => x.ID)</td>
+                                <td>@Html.DisplayNameFor(x => x.Code)</td>
+                                <td>@Html.DisplayNameFor(x => x.Title)</td>
+                                <td>@Html.DisplayNameFor(x => x.Debit)</td>
+                                <td>@Html.DisplayNameFor(x => x.Credit)</td>
+                                <td>@Html.DisplayNameFor(x => x.Balance)</td>
+                                <td>@Html.DisplayNameFor(x => x.ModifiedOn)</td>
+                                <td>@Html.DisplayNameFor(x => x.User.UserName)</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ledger in Model.Ledgers)
+                            {
+                                <tr>
+                                    <td>@ledger.ID</td>
+                                    <td>@ledger.Code</td>
+                                    <td>@ledger.Title</td>
+                                    <td>@ledger.Debit</td>
+                                    <td>@ledger.Credit</td>
+                                    <td>@ledger.Balance</td>
+                                    <td>@ledger.ModifiedOn</td>
+                                    <td>@ledger.User.UserName</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">No Ledgers in Database</div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom-validator")
+}  

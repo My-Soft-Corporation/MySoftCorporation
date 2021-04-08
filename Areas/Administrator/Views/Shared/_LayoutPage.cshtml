@@ -15,10 +15,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/Areas/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Areas/dist/css/adminlte.min.css">
-    @Styles.Render("~/Areas/css/Style.css")
+    <link href="~/Areas/css/Style.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    @Scripts.Render("~/Areas/plugins/jquery/jquery.min.js")
+    @*@Scripts.Render("~/Areas/plugins/jquery/jquery.min.js")*@
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -326,20 +326,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="nav nav-treeview" style="display: none;">
                                 <li class="nav-item">
+                                    <a href="@Url.Action("Index","Voucher")" class="nav-link">
+                                        <i class="nav-icon fas fa-receipt"></i>
+                                        <p> Voucher</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="@Url.Action("Index","VoucherType")" class="nav-link">
                                         <i class="nav-icon fas fa-universal-access"></i>
                                         <p> Voucher Types</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index","Voucher")" class="nav-link">
-                                        <i class="nav-icon fas fa-receipt"></i>
-                                        <p> Voucher</p>
+                                    <a href="@Url.Action("Index","Ledger")" class="nav-link">
+                                        <i class="nav-icon fas fa-universal-access"></i>
+                                        <p>Ledger</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                    
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -387,10 +392,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p>Sidebar content</p>
             </div>
         </aside>
-        <!-- /.control-sidebar -->
-        <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
                 <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
@@ -405,10 +407,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    @Scripts.Render("~/Areas/plugins/jquery/jquery.min.js")
+    @*@Scripts.Render("~/Areas/plugins/jquery/jquery.min.js")*@
     <!-- Bootstrap 4 -->
-    @Scripts.Render("~/Areas/plugins/bootstrap/js/bootstrap.bundle.min.js")
+    @*@Scripts.Render("~/Areas/plugins/bootstrap/js/bootstrap.bundle.min.js")*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
     <!-- AdminLTE App -->
     @Scripts.Render("~/Areas/dist/js/adminlte.min.js")
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Please upgrade your browser to support Location");
+            }
+        function showPosition(position) {
+            var latitudeInput = $("input[name='Latitude']");
+            var longitudeInput = $("input[name='Longitude']");
+            if (latitudeInput != undefined && longitudeInput != undefined ) {
+                latitudeInput.val(position.coords.latitude);
+                longitudeInput.val(position.coords.longitude);
+            }
+            else {
+               
+            }
+        }
+    });
+</script>

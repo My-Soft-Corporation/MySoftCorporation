@@ -8,5 +8,6 @@ namespace MySoftCorporation.Areas.Administrator.Models
 {
     public class LedgerDTO : Ledger
     {
+        public IEnumerable<Ledger> Ledgers { get; set; }
     }
 }

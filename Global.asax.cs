@@ -1,3 +1,5 @@
+using MySoftCorporation.Data.Entities;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -14,6 +16,7 @@ namespace MySoftCorporation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Database.SetInitializer<MySoftCorporationDbContext>(null);
         }
     }
 }

@@ -109,11 +109,13 @@
     <Compile Include="DepartmentService.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="Helpers\Pagination.cs" />
+    <Compile Include="Helpers\Result.cs" />
     <Compile Include="ICRUDService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinceService.cs" />
     <Compile Include="RoleManagerService.cs" />
     <Compile Include="Services\EmployeeAttendanceService.cs" />
+    <Compile Include="Services\LedgerService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="SignManagerService.cs" />
     <Compile Include="StudentService.cs" />
@@ -131,6 +133,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

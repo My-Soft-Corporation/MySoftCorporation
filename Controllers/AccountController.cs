@@ -185,7 +185,8 @@ namespace MySoftCorporation.Controllers
             }
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email };
+
+                var user = new User {  UserName = model.UserName, Email = model.Email, DateOfJoined = DateTime.Now};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
