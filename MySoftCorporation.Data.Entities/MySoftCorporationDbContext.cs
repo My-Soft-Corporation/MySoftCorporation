@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using MySoft.Accounts.Entities.Models;
 using MySoft.Employee.Entities;
 using MySoft.Employee.Entities.Attendance;
 using MySoft.Employee.Entities.Helpers;
@@ -35,7 +36,7 @@ namespace MySoftCorporation.Data.Entities
         public DbSet<UserPicture> UserPictures { get; set; }
         public DbSet<EmployeePicture> EmployeePictures { get; set; }
         public DbSet<Admission> Admissions { get; set; }
-        //public DbSet<Voucher> Vouchers { get; set; }
+        public DbSet<Ledger> Ledgers { get; set; }
         public DbSet<VoucherType> VoucherTypes { get; set; }
         public DbSet<CourseCategory> CourseCategories { get; set; }
     }

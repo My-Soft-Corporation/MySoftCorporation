@@ -178,6 +178,10 @@
     <Compile Include="Migrations\202103311847342_PerfImpro.designer.cs">
       <DependentUpon>202103311847342_PerfImpro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104080505017_addingLedger.cs" />
+    <Compile Include="Migrations\202104080505017_addingLedger.designer.cs">
+      <DependentUpon>202104080505017_addingLedger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySoftCorporationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103311847342_PerfImpro.resx">
       <DependentUpon>202103311847342_PerfImpro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104080505017_addingLedger.resx">
+      <DependentUpon>202104080505017_addingLedger.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
