@@ -61,8 +61,20 @@
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.1.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="MySoft.Accounts.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\bin\Release\MySoft.Accounts.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Employee.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\bin\Release\MySoft.Employee.Entities.dll</HintPath>
+    </Reference>
     <Reference Include="MySoft.ErrorLoging.Entities">
       <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.ErrorLoging.Entities\bin\Release\MySoft.ErrorLoging.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Institute.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\bin\Release\MySoft.Institute.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -111,18 +123,6 @@
     <Compile Include="VoucherTypeService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\MySoft.Accounts.Entities.csproj">
-      <Project>{87637898-ba24-4ca0-8c8f-ac6c3e3c4a1b}</Project>
-      <Name>MySoft.Accounts.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\MySoft.Employee.Entities.csproj">
-      <Project>{3e2be864-1e27-425b-9b11-cf5ca78ec53e}</Project>
-      <Name>MySoft.Employee.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\MySoft.Institute.Entities.csproj">
-      <Project>{1a2dee59-0c74-4885-95d4-678f8a400e6c}</Project>
-      <Name>MySoft.Institute.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MySoftCorporation.Data.Entities\MySoftCorporation.Data.Entities.csproj">
       <Project>{2566075d-4c75-431c-9f7c-0959f106a23c}</Project>
       <Name>MySoftCorporation.Data.Entities</Name>

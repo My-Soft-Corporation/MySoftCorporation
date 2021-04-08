@@ -34,7 +34,7 @@
 
                                     <option>No Users!</option>
                                 }
-                            </select>
+                            </select>   
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -167,7 +167,7 @@
             myForm.validate();
             if (myForm.valid()) {
                 $("#feedBack").html('' +
-                    '<div class= "alert alert-warning " >
+                    '<div class= "alert alert-warning " >'
                     + '<h5><i class="icon fas fa-ban"></i> Wait !</h5>Saving Please Wait</div >');
                 $.ajax({
                     type: "POST",

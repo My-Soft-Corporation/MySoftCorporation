@@ -15,19 +15,16 @@ namespace MySoftCorporation.Services
         
         public bool SavePicture(Picture picture)
         {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            mySoftCorporationDbContext.Pictures.Add(picture);
-            return  mySoftCorporationDbContext.SaveChanges() > 0;
+            _context.Pictures.Add(picture);
+            return _context.SaveChanges() > 0;
         }
         public IEnumerable<Picture> GetPictures()
         {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            return mySoftCorporationDbContext.Pictures.AsEnumerable();
+            return _context.Pictures.AsEnumerable();
         }
         public IEnumerable<Picture> GetPictures(List<int> pictureIDs)
         {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            return pictureIDs.Select(x => mySoftCorporationDbContext.Pictures.Find(x)).ToList();
+            return pictureIDs.Select(x => _context.Pictures.Find(x)).ToList();
         }
     }
 }

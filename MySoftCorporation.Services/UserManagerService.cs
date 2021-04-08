@@ -19,12 +19,10 @@ namespace MySoftCorporation.Services
         public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            await Task.Factory.StartNew(() =>
-            sendMail(message)
-            );
+            await Task.Factory.StartNew(() => SendMail(message));
         }
 
-        private void sendMail(IdentityMessage message)
+        private void SendMail(IdentityMessage message)
         {
             string text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
             string html = "Please confirm your account by clicking this link: <a href=\"" + message.Body + "\">link</a><br/>";

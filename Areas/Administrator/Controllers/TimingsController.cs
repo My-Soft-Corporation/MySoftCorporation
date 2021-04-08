@@ -18,7 +18,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         private readonly TimingService service = new TimingService();
 
         // GET: Administrator/Timings
-        public async Task<ActionResult> Index(string SearchTerm)
+        public async Task<ActionResult> Index()
         {
             //var timings = db.Timings.Include(t => t.User);
             TimingViewModel timingViewModel = new TimingViewModel

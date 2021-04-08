@@ -34,7 +34,7 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-
+                @Html.ValidationSummary()
                 <form action="@Url.Action("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl })" method="post">
                     @Html.AntiForgeryToken()
                     <div class="input-group mb-3">

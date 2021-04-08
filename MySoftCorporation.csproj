@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -63,11 +62,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -109,6 +108,18 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Owin.Security.Twitter.4.1.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Accounts.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\bin\Release\MySoft.Accounts.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Employee.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\bin\Release\MySoft.Employee.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Institute.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\bin\Release\MySoft.Institute.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -203,6 +214,7 @@
     <Reference Include="Microsoft.Owin.Security.Cookies">
       <HintPath>packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
+    <Reference Include="System.Deployment" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -238,6 +250,7 @@
     <Compile Include="Areas\Administrator\Models\DashboardModel.cs" />
     <Compile Include="Areas\Administrator\Models\DepartmentViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\EmployeeViewModel.cs" />
+    <Compile Include="Areas\Administrator\Models\LedgerDTO.cs" />
     <Compile Include="Areas\Administrator\Models\ProvinceViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\RoleViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\StudentViewModel.cs" />
@@ -1810,6 +1823,18 @@
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\EntityFramework.SqlServer.xml" />
     <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.Authentication.Cookies.dll" />
+    <Content Include="bin\Microsoft.AspNet.Authentication.dll" />
+    <Content Include="bin\Microsoft.AspNet.Cryptography.Internal.dll" />
+    <Content Include="bin\Microsoft.AspNet.Cryptography.KeyDerivation.dll" />
+    <Content Include="bin\Microsoft.AspNet.DataProtection.Abstractions.dll" />
+    <Content Include="bin\Microsoft.AspNet.DataProtection.dll" />
+    <Content Include="bin\Microsoft.AspNet.FileProviders.Abstractions.dll" />
+    <Content Include="bin\Microsoft.AspNet.Hosting.Abstractions.dll" />
+    <Content Include="bin\Microsoft.AspNet.Http.Abstractions.dll" />
+    <Content Include="bin\Microsoft.AspNet.Http.dll" />
+    <Content Include="bin\Microsoft.AspNet.Http.Extensions.dll" />
+    <Content Include="bin\Microsoft.AspNet.Http.Features.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Core.xml" />
     <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
@@ -1818,6 +1843,10 @@
     <Content Include="bin\Microsoft.AspNet.Identity.Owin.xml" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+    <Content Include="bin\Microsoft.Extensions.DependencyInjection.dll" />
+    <Content Include="bin\Microsoft.Extensions.DependencyInjection.xml" />
     <Content Include="bin\Microsoft.Owin.dll" />
     <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
     <Content Include="bin\Microsoft.Owin.Host.SystemWeb.xml" />
@@ -1837,8 +1866,12 @@
     <Content Include="bin\Microsoft.Owin.Security.xml" />
     <Content Include="bin\Microsoft.Owin.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\MySoft.Accounts.Entities.dll" />
+    <Content Include="bin\MySoft.Accounts.Entities.pdb" />
     <Content Include="bin\MySoft.Employee.Entities.dll" />
     <Content Include="bin\MySoft.Employee.Entities.pdb" />
+    <Content Include="bin\MySoft.ErrorLoging.Entities.dll" />
+    <Content Include="bin\MySoft.ErrorLoging.Entities.pdb" />
     <Content Include="bin\MySoft.Institute.Entities.dll" />
     <Content Include="bin\MySoft.Institute.Entities.pdb" />
     <Content Include="bin\MySoftCorporation.Data.Entities.dll" />
@@ -1889,6 +1922,34 @@
     <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
     <Content Include="bin\roslyn\vbc.exe" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.AppContext.dll" />
+    <Content Include="bin\System.Diagnostics.Tracing.dll" />
+    <Content Include="bin\System.Globalization.Calendars.dll" />
+    <Content Include="bin\System.IO.Compression.dll" />
+    <Content Include="bin\System.IO.Compression.ZipFile.dll" />
+    <Content Include="bin\System.IO.dll" />
+    <Content Include="bin\System.IO.FileSystem.dll" />
+    <Content Include="bin\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\System.Linq.dll" />
+    <Content Include="bin\System.Linq.Expressions.dll" />
+    <Content Include="bin\System.Net.Http.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Net.Sockets.dll" />
+    <Content Include="bin\System.Reflection.dll" />
+    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="bin\System.Runtime.dll" />
+    <Content Include="bin\System.Runtime.Extensions.dll" />
+    <Content Include="bin\System.Runtime.InteropServices.dll" />
+    <Content Include="bin\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="bin\System.Security.Claims.dll" />
+    <Content Include="bin\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\System.Text.RegularExpressions.dll" />
+    <Content Include="bin\System.Threading.Tasks.Extensions.dll" />
     <Content Include="bin\System.Web.Helpers.dll" />
     <Content Include="bin\System.Web.Helpers.xml" />
     <Content Include="bin\System.Web.Mvc.dll" />
@@ -1903,6 +1964,7 @@
     <Content Include="bin\System.Web.WebPages.Razor.dll" />
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\System.Xml.ReaderWriter.dll" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -3853,6 +3915,8 @@
     <Content Include="Areas\Administrator\Views\EmployeeAttendance\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\EmployeeAttendance\ClockIn.cshtml" />
     <Content Include="Areas\Administrator\Views\EmployeeAttendance\ClockOut.cshtml" />
+    <Content Include="bin\MySoft.ErrorLoging.Entities.dll.config" />
+    <Content Include="bin\MySoft.Accounts.Entities.dll.config" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -4022,7 +4086,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administrator\Api\" />
     <Folder Include="Areas\Administrator\Data\" />
     <Folder Include="Areas\plugins\filterizr\config\" />
     <Folder Include="Areas\plugins\filterizr\FilterContainer\" />
@@ -4049,18 +4112,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\MySoft.Accounts.Entities.csproj">
-      <Project>{87637898-ba24-4ca0-8c8f-ac6c3e3c4a1b}</Project>
-      <Name>MySoft.Accounts.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\MySoft.Employee.Entities.csproj">
-      <Project>{3e2be864-1e27-425b-9b11-cf5ca78ec53e}</Project>
-      <Name>MySoft.Employee.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\MySoft.Institute.Entities.csproj">
-      <Project>{1a2dee59-0c74-4885-95d4-678f8a400e6c}</Project>
-      <Name>MySoft.Institute.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="MySoftCorporation.Data.Entities\MySoftCorporation.Data.Entities.csproj">
       <Project>{2566075d-4c75-431c-9f7c-0959f106a23c}</Project>
       <Name>MySoftCorporation.Data.Entities</Name>
@@ -4113,11 +4164,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

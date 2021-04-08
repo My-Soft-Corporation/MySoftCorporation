@@ -47,6 +47,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="MySoft.Accounts.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\bin\Release\MySoft.Accounts.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Employee.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\bin\Release\MySoft.Employee.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Institute.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\bin\Release\MySoft.Institute.Entities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -284,20 +296,6 @@
     <EmbeddedResource Include="Migrations\202104080505017_addingLedger.resx">
       <DependentUpon>202104080505017_addingLedger.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Accounts.Entities\MySoft.Accounts.Entities.csproj">
-      <Project>{87637898-ba24-4ca0-8c8f-ac6c3e3c4a1b}</Project>
-      <Name>MySoft.Accounts.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\MySoft.Employee.Entities.csproj">
-      <Project>{3e2be864-1e27-425b-9b11-cf5ca78ec53e}</Project>
-      <Name>MySoft.Employee.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\MySoft.Institute.Entities.csproj">
-      <Project>{1a2dee59-0c74-4885-95d4-678f8a400e6c}</Project>
-      <Name>MySoft.Institute.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
