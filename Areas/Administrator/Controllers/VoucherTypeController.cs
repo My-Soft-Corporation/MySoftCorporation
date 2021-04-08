@@ -12,7 +12,10 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
     {
         // GET: Administrator/VoucherType
         private readonly VoucherTypeService service = new VoucherTypeService();
+        public VoucherTypeController()
+        {
 
+        }
         public ActionResult Index(string SearchTerm)
         {
             VoucherTypeViewModel voucherTypeViewModel = new VoucherTypeViewModel
