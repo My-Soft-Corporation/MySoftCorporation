@@ -1,0 +1,44 @@
+﻿@model MySoft.Accounts.Entities.Models.Accounts.AccountType
+@{
+    ViewBag.Title = "Account Type";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Account Type</div>
+        </div>
+        <div class="card-body">
+            @if (Model != null)
+            {
+                using (Html.BeginForm("Create", "AccountType", FormMethod.Post))
+                {
+                    @Html.ValidationSummary()
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.Id)
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(x => x.Name)
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Name)
+                        </div>
+                    </div>
+                    <div>
+                        @Html.HiddenFor(x => x.IP)
+                        @Html.HiddenFor(x => x.Agent)
+                        @Html.HiddenFor(x => x.Latitude)
+                        @Html.HiddenFor(x => x.Longitude)
+                        @Html.HiddenFor(x => x.AddedById)
+                    </div>
+                    <div class="form-group row">
+                        <input type="submit" name="Save" value="Save" class="btn btn-success " />
+                    </div>
+                }
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                    @Scripts.Render("~/bundles/custom-validator")
+                }
+            }
+        </div>
+    </div>
+</div>

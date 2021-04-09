@@ -114,6 +114,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinceService.cs" />
     <Compile Include="RoleManagerService.cs" />
+    <Compile Include="Services\Account\AccountTypeService.cs" />
     <Compile Include="Services\EmployeeAttendanceService.cs" />
     <Compile Include="Services\LedgerService.cs" />
     <Compile Include="Services\UserService.cs" />

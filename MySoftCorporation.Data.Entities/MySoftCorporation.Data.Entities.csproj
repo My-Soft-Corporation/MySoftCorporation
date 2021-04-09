@@ -206,6 +206,14 @@
     <Compile Include="Migrations\202104081811324_Voucher-Add.designer.cs">
       <DependentUpon>202104081811324_Voucher-Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104091107352_accountTypeAndChartOfAccounts.cs" />
+    <Compile Include="Migrations\202104091107352_accountTypeAndChartOfAccounts.designer.cs">
+      <DependentUpon>202104091107352_accountTypeAndChartOfAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104091205498_UniqueAccountType.cs" />
+    <Compile Include="Migrations\202104091205498_UniqueAccountType.designer.cs">
+      <DependentUpon>202104091205498_UniqueAccountType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySoftCorporationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -316,6 +324,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104081811324_Voucher-Add.resx">
       <DependentUpon>202104081811324_Voucher-Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104091107352_accountTypeAndChartOfAccounts.resx">
+      <DependentUpon>202104091107352_accountTypeAndChartOfAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104091205498_UniqueAccountType.resx">
+      <DependentUpon>202104091205498_UniqueAccountType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
