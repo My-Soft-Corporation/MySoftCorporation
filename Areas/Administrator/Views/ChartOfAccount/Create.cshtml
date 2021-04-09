@@ -1,0 +1,71 @@
+﻿@model MySoft.Accounts.Entities.Models.Accounts.ChartOfAccount
+@{
+    ViewBag.Title = "Account Type";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Account</div>
+        </div>
+        <div class="card-body">
+            @if (Model != null)
+            {
+                using (Html.BeginForm("Create","ChartOfAccount", FormMethod.Post))
+                {
+                    @Html.ValidationSummary()
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.Id)
+            <div class="row form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.AccountTypeId)
+                    @Html.DropDownListFor(x=>x.AccountTypeId,new SelectList(ViewBag.AccountTypesList, "Id","Name"),new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.AccountTypeId)
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.Title)
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.Code)
+                    @Html.TextBoxFor(x => x.Code, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Code)
+                </div>
+            </div>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.Debit)
+                            @Html.TextBoxFor(x => x.Debit, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Debit)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.Credit)
+                            @Html.TextBoxFor(x => x.Credit, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Credit)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.Balance)
+                            @Html.TextBoxFor(x => x.Balance, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Balance)
+                        </div>
+                    </div>
+                    <div>
+                        @Html.HiddenFor(x => x.IP)
+                        @Html.HiddenFor(x => x.Agent)
+                        @Html.HiddenFor(x => x.Latitude)
+                        @Html.HiddenFor(x => x.Longitude)
+                        @Html.HiddenFor(x => x.UserID)
+                    </div>
+                    <div class="form-group row">
+                        <input type="submit" name="Save" value="Save" class="btn btn-success " />
+                    </div>
+                }
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                    @Scripts.Render("~/bundles/custom-validator")
+                }
+            }
+        </div>
+    </div>
+</div>

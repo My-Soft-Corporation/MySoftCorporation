@@ -226,6 +226,7 @@
     <Compile Include="Areas\Administrator\Controllers\AccountTypeController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdminAuthorizeController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmissionController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\ChartOfAccountController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CityController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CountryController.cs" />
@@ -3924,6 +3925,8 @@
     <Content Include="Areas\Administrator\Views\Ledger\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\AccountType\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\AccountType\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChartOfAccount\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChartOfAccount\Index.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
