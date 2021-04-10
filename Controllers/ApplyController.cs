@@ -103,5 +103,9 @@ namespace MySoftCorporation.Controllers
             jsonResult.Data = new { Success = isTrue, Message = Msg };
             return jsonResult;
         }
+        public ActionResult ApplyConfirmation()
+        {
+            return View();
+        }
     }
 }

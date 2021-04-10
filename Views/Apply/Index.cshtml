@@ -151,7 +151,10 @@
             </div>
         }
 
-        <div class="row" id="feedBack">
+        <div class="row" >
+            <div class="col-md-12" id="feedBack">
+
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -182,7 +185,8 @@ else
                 data: form.serialize(),
                 success: function (response) {
                     if (response.Success) {
-                        $("#feedBack").html("<div class='alert alert-success'>Saved Successfully</div>");
+                        $("#feedBack").html("<div class='alert alert-success'><strong>Please Wait While We Are Saving Record Into Database<strong></div>");
+                        window.location("@Url.Action("ApplyConfirmation", "Apply")")
                     }
                     else {
 
