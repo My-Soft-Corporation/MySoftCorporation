@@ -5,94 +5,94 @@
 @if (Model != null && Model.Cities.Count() > 0 && Model.BloodGroups.Count() > 0)
 {
     <div style="
-    margin: 10px;">
-        <h2 class="text-bold text-center" style="
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-    margin-bottom: 15px;
-    padding: 5px;
-    font-weight: bolder;
-">
-            Student Application Form
+                margin: 10px;">
+           <h2 class="text-bold text-center" style="
+                border: 2px solid black;
+                border-radius: 10px;
+                background-color: black;
+                color: white;
+                margin-bottom: 15px;
+                padding: 5px;
+                font-weight: bolder;
+            ">
+            Student Application Form  
         </h2>
         @using (Html.BeginForm("ApplyNow", "Apply", FormMethod.Post, new { id = "actionForm" }))
         {
             @Html.AntiForgeryToken()
-            <input value="@Model.ID" type="hidden" name="ID" />
-            <input type="hidden" name="CourseID" value="@Model.CourseID" />
+            @Html.HiddenFor(x=>x.ID)
+            @Html.HiddenFor(x=>x.CourseID)
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>FirstName *</label>
-                        <input type="text" class="form-control" value="@Model.FirstName" name="FirstName" minlength="3" maxlength="50" required>
+                        @Html.LabelFor(x=>x.FirstName)
+                        <input type="text" class="form-control" value="@Model.FirstName" @(Model.FirstName != ""? "readonly": string.Empty) name="FirstName" minlength="3" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>LastName *</label>
-                        <input type="text" class="form-control" value="@Model.LastName" name="LastName" minlength="2" maxlength="50" required>
+                        @Html.LabelFor(x => x.LastName)
+                        <input type="text" class="form-control" value="@Model.LastName" @(Model.LastName != "" ? "readonly" : string.Empty) name="LastName" minlength="2" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>CNIC or Form B *</label>
-                        <input type="text" class="form-control" data-inputmask="'mask': '99999-9999999-9'" value="@Model.CNIC" name="CNIC" minlength="2" maxlength="50" required>
+                        @Html.LabelFor(x => x.CNIC)
+                        <input type="text" class="form-control" data-inputmask="'mask': '99999-9999999-9'" value="@Model.CNIC" @(Model.CNIC != "" ? "readonly" : string.Empty) name="CNIC" minlength="2" maxlength="50" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Father Name *</label>
-                        <input type="text" class="form-control" value="@Model.FatherCNIC" name="FatherName" minlength="3" maxlength="50" required>
+                        @Html.LabelFor(x => x.FatherName)
+                        <input type="text" @(Model.FatherName != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherCNIC" name="FatherName" minlength="3" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Father CNIC  *</label>
-                        <input type="text" class="form-control" value="@Model.FatherCNIC" data-inputmask="'mask': '99999-9999999-9'" name="FatherCNIC" minlength="2" maxlength="50" required>
+                        @Html.LabelFor(x => x.FatherCNIC)
+                        <input type="text" @(Model.FatherCNIC != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherCNIC" data-inputmask="'mask': '99999-9999999-9'" name="FatherCNIC" minlength="2" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Father Profession *</label>
-                        <input type="text" class="form-control" value="@Model.FatherProfession" name="FatherProfession" minlength="2" maxlength="50" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Student Contact  *</label>
-                        <input type="text" class="form-control" value="@Model.StudentContact" name="StudentContact" data-inputmask="'mask': '9999-9999999'" minlength="11" maxlength="20" required>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Father Contact  *</label>
-                        <input type="text" class="form-control" value="@Model.FatherContact" name="FatherContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Emergency Contact *</label>
-                        <input type="text" class="form-control" value="@Model.EmergencyContact" name="EmergencyContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
+                        @Html.LabelFor(x => x.FatherProfession)
+                        <input type="text" @(Model.FatherProfession != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherProfession" name="FatherProfession" minlength="2" maxlength="50" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>DateOfBirth *</label>
+                        @Html.LabelFor(x => x.StudentContact)
+                        <input type="text" @(Model.StudentContact != "" ? "readonly" : string.Empty) class="form-control" value="@Model.StudentContact" name="StudentContact" data-inputmask="'mask': '9999-9999999'" minlength="11" maxlength="20" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.FatherContact)
+                        <input type="text" @(Model.FatherContact != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherContact" name="FatherContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.EmergencyContact)
+                        <input type="text" @(Model.EmergencyContact != "" ? "readonly" : string.Empty) class="form-control" value="@Model.EmergencyContact" name="EmergencyContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.DateOfBirth)
                         <input type="date" class="form-control" value="@(Model.DateOfBirth.ToString("yyyy-MM-dd"))" name="DateOfBirth" min="@DateTime.Now.AddYears(-50).ToString("yyyy-MM-dd")" max="@DateTime.Now.AddYears(-12).ToString("yyyy-MM-dd")" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>BloodGroup *</label>
-                        <select name="BloodGroupID" class="form-control" required>
+                        @Html.LabelFor(x => x.BloodGroupID)
+                        <select name="BloodGroupID" @(Model.BloodGroupID > 0 ? "readonly" : string.Empty) class="form-control" required>
                             @if (Model.BloodGroups.Count() > 0)
                             {
                                 foreach (var bloodGroup in Model.BloodGroups)
@@ -102,14 +102,14 @@
                             }
                             else
                             {
-                                <option>No City Found!</option>
+                                <option>No Blood Group Found!</option>
                             }
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-4" style="margin-top: 35px;">
                     <div class="form-group">
-                        <label>Gender *</label>
+                        @Html.LabelFor(x => x.Gender)
                         <input type="radio" name="Gender" value="Male" checked> Male
                         <input type="radio" name="Gender" value="Female"> Female
                     </div>
@@ -118,8 +118,8 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>City *</label>
-                        <select name="CityID" class="form-control" required>
+                        @Html.LabelFor(x => x.CityID)
+                        <select name="CityID" @(Model.CityID > 0 ? "readonly" : string.Empty) class="form-control" required>
                             @if (Model.Cities.Count() > 0)
                             {
                                 foreach (var singleCity in Model.Cities)
@@ -136,16 +136,16 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Present Address *</label>
+                        @Html.LabelFor(x => x.PresentAddress)
                         <textarea class="form-control" maxlength="100" rows="4" name="PresentAddress" required>
                             @Model.PresentAddress</textarea>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Permenant Address *</label>
-                        <textarea class="form-control" maxlength="100" rows="4" name="PermenantAddress" required>
-                            @Model.PresentAddress</textarea>
+                        @Html.LabelFor(x => x.PermenantAddress)
+                        <textarea @(Model.PermenantAddress != "" ? "readonly" : string.Empty) class="form-control" maxlength="100" rows="4" name="PermenantAddress" required>
+                            @Model.PermenantAddress</textarea>
                     </div>
                 </div>
             </div>
@@ -185,12 +185,12 @@ else
                 data: form.serialize(),
                 success: function (response) {
                     if (response.Success) {
-                        $("#feedBack").html("<div class='alert alert-success'><strong>Please Wait While We Are Saving Record Into Database<strong></div>");
-                        window.location("@Url.Action("ApplyConfirmation", "Apply")")
+                        $("#feedBack").html("<div class='alert alert-success'><strong>You Have successfully applied for this course<strong></div>");
+                        window.location.replace("@Url.Action("ApplyConfirmation", "Apply")")
                     }
                     else {
 
-                        $("#feedBack").html("<div class='alert alert-danger'>"+response.Message+"</div>");
+                        $("#feedBack").html("<div class='alert alert-danger'>" + response.Message + "</div>");
                     }
                 }
             });

@@ -99,7 +99,10 @@ namespace MySoftCorporation.Controllers
             };
             AdmissionService admissionService = new AdmissionService();
             var (isTrue, Msg) = admissionService.Admission(student, admission);
-
+            if (Msg.Contains("StudentAndCourseUnique"))
+            {
+                Msg = "You have already applied for this course";
+            }
             jsonResult.Data = new { Success = isTrue, Message = Msg };
             return jsonResult;
         }

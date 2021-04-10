@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
 {
-    [Authorize(Roles = "General Manager,Administrator")]
-    public class ServiceController : Controller
+    public class ServiceController : AdminAuthorizeController
     {
         // GET: Administrator/Service
         public ActionResult Index()
