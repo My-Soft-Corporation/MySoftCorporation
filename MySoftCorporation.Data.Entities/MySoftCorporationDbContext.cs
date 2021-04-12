@@ -15,7 +15,7 @@ namespace MySoftCorporation.Data.Entities
 {
     public class MySoftCorporationDbContext : IdentityDbContext<User>
     {
-        public MySoftCorporationDbContext() : base("ServerOnLocal")
+        public MySoftCorporationDbContext() : base("ServerOnServer")
         {
         }
 
