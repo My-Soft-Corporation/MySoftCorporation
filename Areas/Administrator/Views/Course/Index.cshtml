@@ -1,6 +1,7 @@
-﻿@model MySoftCorporation.Areas.Administrator.Models.CourseViewModel
+﻿@model IEnumerable<MySoft.Institute.Entities.Course>
 @{
     ViewBag.Title = "Course";
+    string Controller = ViewContext.RouteData.Values["controller"].ToString();
 }
 <div class="col-md-12">
     <div class="card form-group">
@@ -10,19 +11,15 @@
     </div>
 
     <div class="card form-group">
-        <div class="col-md-12 col-sm-12 col-lg-12" style="
-    margin-top: 10px;
-">
-            <form>
-      
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" value="@Model.SearchTerm" name="SearchTerm" placeholder="Search @ViewContext.RouteData.Values["controller"].ToString() Here " required>
+        <div class="col-md-12 col-sm-12 col-lg-12" style="margin-top: 10px;">
+            <form>    
+                <div class="input-group input-group-sm">    
+                    <input type="text" class="form-control" value="" disabled name="SearchTerm" placeholder="Search Controller Here " required>
                     <span class="input-group-append">
                         <button type="submit" class="btn btn-info btn-sm btn-flat"><i class="fa fa-search mr-1"></i> Search</button>
-                        <a class="btn btn-primary btn-sm btn-flat " href="@Url.Action("Index",ViewContext.RouteData.Values["controller"].ToString())"><i class="fa fa-circle mr-1"></i> Reset</a>
-                        <button type="button" data-href="@Url.Action("Action",ViewContext.RouteData.Values["controller"].ToString())" class="data-btn btn btn-default" data-toggle="modal" data-target="#actionModal">
-                            <i class="fa fa-plus mr-1"></i> Create
-                        </button>
+                        <a class="btn btn-primary btn-sm btn-flat " href="@Url.Action("Index",Controller)"><i class="fa fa-circle mr-1"></i> Reset</a>
+                        <a class="btn btn-default" href="@Url.Action("Action",Controller)">
+                        <i class="fa fa-plus mr-1"></i> Create</a>
                     </span>
                 </div>
             </form>

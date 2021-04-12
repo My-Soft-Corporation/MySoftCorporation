@@ -1,5 +1,8 @@
-﻿using MySoft.Institute.Entities;
+﻿using MySoft.ErrorLoging.Entities;
+using MySoft.Institute.Entities;
 using MySoftCorporation.Data.Entities;
+using MySoftCorporation.Services.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -14,48 +17,52 @@ namespace MySoftCorporation.Services
         {
             _context = new MySoftCorporationDbContext();
         }
-        public async Task<List<Course>> GetAll(int Id = 0)
+        public async Task<IEnumerable<Course>> GetAll(int Id = 0)
         {
             if (Id == 0)
             {
-            return await _context.Courses.OrderBy(x=>x.CategoryID).OrderBy(x=>x.Fee).ToListAsync();
+                return await _context.Courses.
+                        Include(x=>x.CourseCategory).
+                        Include(x=>x.User)
+                        .OrderBy(x=>x.Fee)
+                        .ToListAsync();
             }
             else
             {
-                return await _context.Courses.Where(x=>x.ID == Id).OrderBy(x => x.CategoryID).OrderBy(x => x.Fee).ToListAsync();
+                return await _context.Courses.
+                                        Include(x => x.CourseCategory).
+                                        Include(x => x.User).
+                                        Where(x=>x.ID == Id).
+                                        OrderBy(x => x.Fee).
+                                        ToListAsync();
             }
         }
-
-
-
         public Course GetByID(int ID)
         {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            return mySoftCorporationDbContext.Courses.Find(ID);
+            return _context.Courses.Where(x=>x.ID == ID).SingleOrDefault();
         }
 
-        public bool Save(Course course)
+        public async Task<(bool isTrue,string ResponseMsg)> Save(Course course)
         {
-            using (var context = new MySoftCorporationDbContext())
+            if (course.ID > 0)
+                _context.Entry(course).State = EntityState.Modified;
+            else
+                _context.Courses.Add(course);
+            try
             {
-                context.Courses.Add(course);
-                return context.SaveChanges() > 0;
+               return (await _context.SaveChangesAsync() > 0, Result.Success);
             }
-        }
-
-        public bool Update(Course course)
-        {
-            _context.Entry(course).State = EntityState.Modified;
-            return _context.SaveChanges() > 0;
+            catch (Exception exc)
+            {
+                return (false, Error.GetDetail(exc));
+            }
         }
 
         public bool Delete(Course course)
         {
-            using (var context = new MySoftCorporationDbContext())
-            {
-                context.Entry(course).State = EntityState.Deleted;
-                return context.SaveChanges() > 0;
-            }
+            var selectedCourse = _context.Courses.Where(x => x.ID == course.ID);
+                _context.Entry(selectedCourse).State = EntityState.Deleted;
+                return _context.SaveChanges() > 0;
         }
     }
 }

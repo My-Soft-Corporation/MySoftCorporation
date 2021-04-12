@@ -13,33 +13,44 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
     public class CourseController : AdminAuthorizeController
     {
         private readonly CourseService service = new CourseService();
-        private readonly DashboardService dashboardService = new DashboardService();
-
+        private readonly CourseCategoryService _service2;
+        public CourseController()
+        {
+            _service2 = new CourseCategoryService();
+        }
         public async Task<ActionResult> Index(int courseID = 0)
         {
-            CourseViewModel courseViewModel = new CourseViewModel
-            {
-                Courses = await service.GetAll(courseID)
-            };
-            return View(courseViewModel);
+            return View(await service.GetAll(courseID));
         }
 
         [HttpGet]
-        public ActionResult Action(int? ID)
+        public async Task<ActionResult> Action(int? ID)
         {
-            Course model = new Course();
+            ViewBag.Categories = await _service2.GetAll();
             if (ID.HasValue)
             {
                 Course course = service.GetByID(ID.Value);
-                model.ID = course.ID;
-                model.Title = course.Title;
-                model.Duration = course.Duration;
-                model.Fee = course.Fee;
+                course.UserID = UserHelperInfo.GetUserId();
+                course.IP = UserInfo.IP();
+                course.Agent = UserInfo.Agent();
+                course.Location = UserInfo.Location();
+                return View("_Action", course);
             }
-            return PartialView("_Action", model);
+            else
+            {
+                Course course = new Course
+                {
+                    UserID = UserHelperInfo.GetUserId(),
+                    IP = UserInfo.IP(),
+                    Location = UserInfo.Location(),
+                    Agent = UserInfo.Agent()
+                };
+                return View("_Action", course);
+            }
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Delete(int ID)
         {
             Course course = service.GetByID(ID);
@@ -47,6 +58,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
 
         [HttpPost]
+       
         public ActionResult Delete(CourseActionModel model)
         {
             string msg = "";
@@ -69,61 +81,32 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public JsonResult Action(CourseActionModel model)
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<ActionResult> Action(Course course)
         {
-            bool result;
-            Course objectFirst;
-            string msg = "";
-            if (model.ID > 0)
+            course.ModifiedOn = DateTime.Now;
+            if (ModelState.IsValid)
             {
-                objectFirst = service.GetByID(model.ID);
-                objectFirst.Title = model.Title;
-                objectFirst.Duration = model.Duration;
-                objectFirst.Fee = model.Fee;
-                objectFirst.UserID = UserHelperInfo.GetUserId();
-                objectFirst.ModifiedOn = DateTime.Now;
-                objectFirst.IP = UserInfo.IP();
-                objectFirst.Agent = UserInfo.Agent();
-                objectFirst.Location = UserInfo.Location();
-                try
+                var (isTrue, ResponseMsg) =  await service.Save(course);
+                if (isTrue)
                 {
-                    result = service.Update(objectFirst);
+                   return RedirectToAction("Index");
                 }
-                catch (Exception exc)
+                else
                 {
-                    msg = exc.Message.ToString();
-                    result = false;
+                    ViewBag.Categories = await _service2.GetAll();
+                    ModelState.AddModelError("Error", ResponseMsg);
+                    return View("_Action", course);
                 }
             }
             else
             {
-                objectFirst = new Course
-                {
-                    Title = model.Title,
-                    Duration = model.Duration,
-                    Fee = model.Fee,
-                    ModifiedOn = DateTime.Now,
-                    UserID = UserHelperInfo.GetUserId(),
-                    IP = UserInfo.IP(),
-                    Agent = UserInfo.Agent(),
-                    Location = UserInfo.Location(),
-                };
-                try
-                {
-                    result = service.Save(objectFirst);
-                }
-                catch (Exception exc)
-                {
-                    msg = exc.Message.ToString();
-                    result = false;
-                }
+                ViewBag.Categories = await _service2.GetAll();
+                ModelState.AddModelError("Error", "check the error");
+                return View("_Action", course);
             }
 
-            JsonResult jsonResult = new JsonResult
-            {
-                Data = result ? (new { Success = true, Msg = msg }) : (new { Success = false, Msg = msg })
-            };
-            return jsonResult;
         }
     }
 }

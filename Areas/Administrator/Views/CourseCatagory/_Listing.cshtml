@@ -1,6 +1,6 @@
-﻿@model MySoftCorporation.Areas.Administrator.Models.CourseCategoryViewModel
+﻿@model List<MySoft.Institute.Entities.CourseCategory>
 
-@if (Model != null && Model.All.Count() > 0)
+@if (Model != null && Model.Count() > 0)
 {
 
     <!-- /.card-header -->
@@ -23,7 +23,7 @@
                     @{
                         int i = 1;
                     }
-                    @foreach (var item in Model.All)
+                    @foreach (var item in Model)
                     {
                         <tr>
                             <td> @i </td>

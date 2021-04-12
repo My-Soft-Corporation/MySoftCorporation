@@ -3,14 +3,20 @@ using MySoftCorporation.Data.Entities;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MySoftCorporation.Services
 {
     public class CourseCategoryService
     {
-        public IEnumerable<CourseCategory> GetAll()
+        private readonly MySoftCorporationDbContext _context;
+        public CourseCategoryService()
         {
-            return new MySoftCorporationDbContext().CourseCategories.AsEnumerable();
+            _context = new MySoftCorporationDbContext();
+        }
+        public async Task<List<CourseCategory>> GetAll()
+        {
+            return await _context.CourseCategories.ToListAsync();
         }
 
         public IEnumerable<CourseCategory> Search(string SearchTerm)

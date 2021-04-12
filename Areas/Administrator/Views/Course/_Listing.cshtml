@@ -1,5 +1,8 @@
-﻿@model MySoftCorporation.Areas.Administrator.Models.CourseViewModel
-        @if (Model != null && Model.Courses.Count() > 0)
+﻿@model IEnumerable<MySoft.Institute.Entities.Course>
+    @{
+        string controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+        @if (Model != null && Model.Count() > 0)
         {
             <!-- /.card-header -->
             <div class="card-body">
@@ -8,7 +11,10 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">S#</th>
+                                <th>Category</th>
                                 <th>Title</th>
+                                <th>StartsOn</th>
+                                <th>EndsOn</th>
                                 <th>Duration</th>
                                 <th>Fee</th>
                                 <th>Modified By</th>
@@ -23,23 +29,26 @@
                             @{
                                 int i = 1;
                             }
-                            @foreach (var item in Model.Courses)
+                            @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td> @i </td>
-                                    <td>@item.Title</td>
-                                    <td>@item.Duration</td>
-                                    <td>@item.Fee</td>
-                                    <td>@item.User.UserName</td>
-                                    <td>@item.ModifiedOn</td>
-                                    <td>@item.IP</td>
-                                    <td>@item.Agent</td>
-                                    <td>@item.Location</td>
-                                    <td>
-                                        <button data-href="@Url.Action("Action",ViewContext.RouteData.Values["controller"].ToString(),new { ID = item.ID })" class="data-btn btn btn-warning btn-sm btn-flat" data-toggle="modal" data-target="#actionModal"><i class="fa fa-edit mr-1"></i> Edit</button>
-                                        <button data-href="@Url.Action("Delete",ViewContext.RouteData.Values["controller"].ToString(),new { ID = item.ID })" class="delete-btn btn btn-sm btn-danger btn-flat" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash mr-1"></i> Delete</button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td> @i </td>
+                                <td> @item.CourseCategory.Name </td>
+                                <td>@item.Title</td>
+                                <td>@item.StartTime.ToShortTimeString()</td>
+                                <td>@item.EndTime.ToShortTimeString()</td>
+                                <td>@item.Duration</td>
+                                <td>@item.Fee</td>
+                                <td>@item.User.UserName</td>
+                                <td>@item.ModifiedOn</td>
+                                <td>@item.IP</td>
+                                <td>@item.Agent</td>
+                                <td>@item.Location</td>
+                                <td>
+                                    <a href="@Url.Action("Action",controller,new { ID = item.ID })" class=" btn btn-warning btn-sm btn-flat" ><i class="fa fa-edit mr-1"></i> Edit</a>
+                                    <button data-href="@Url.Action("Delete",controller,new { ID = item.ID })" class="delete-btn btn btn-sm btn-danger btn-flat" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash mr-1"></i> Delete</button>
+                                </td>
+                            </tr>
 
                                 i++;
                             }

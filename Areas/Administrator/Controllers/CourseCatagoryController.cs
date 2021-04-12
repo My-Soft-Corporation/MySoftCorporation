@@ -4,6 +4,7 @@ using MySoftCorporation.Helpers;
 using MySoftCorporation.Models;
 using MySoftCorporation.Services;
 using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
@@ -13,14 +14,9 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         // GET: Administrator/CourseCatagory
         private readonly CourseCategoryService service = new CourseCategoryService();
 
-        public ActionResult Index(string SearchTerm)
-        {
-            CourseCategoryViewModel model = new CourseCategoryViewModel
-            {
-                All = service.Search(SearchTerm),
-                SearchTerm = SearchTerm
-            };
-            return View(model);
+        public async Task<ActionResult> Index()
+        {        
+            return View(await service.GetAll());
         }
 
         [HttpGet]

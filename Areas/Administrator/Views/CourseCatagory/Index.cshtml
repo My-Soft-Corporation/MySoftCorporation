@@ -1,4 +1,4 @@
-﻿@model MySoftCorporation.Areas.Administrator.Models.CourseCategoryViewModel
+﻿@model List<MySoft.Institute.Entities.CourseCategory>
 @{
     ViewBag.Title = ViewContext.RouteData.Values["controller"].ToString();
 }
@@ -15,7 +15,7 @@
 ">
             <form>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" value="@Model.SearchTerm" name="SearchTerm" placeholder="Search @ViewContext.RouteData.Values["controller"].ToString() Here " required>
+                    <input type="text" class="form-control" disabled name="SearchTerm" placeholder="Search @ViewContext.RouteData.Values["controller"].ToString() Here " required>
                     <span class="input-group-append">
                         <button type="submit" class="btn btn-info btn-sm btn-flat"><i class="fa fa-search mr-1"></i> Search</button>
                         <a class="btn btn-primary btn-sm btn-flat " href="@Url.Action("Index",ViewContext.RouteData.Values["controller"].ToString())"><i class="fa fa-circle mr-1"></i> Reset</a>
@@ -28,7 +28,6 @@
         </div>
     </div>
     @{Html.RenderPartial("_Listing", Model);}
-
     <!-- /.card-body -->
 </div>
 <div class="modal fade" id="actionModal" aria-hidden="true" style="display: none;">
