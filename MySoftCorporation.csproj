@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -62,11 +63,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -119,12 +120,19 @@
     </Reference>
     <Reference Include="MySoft.Institute.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\bin\Release\MySoft.Institute.Entities.dll</HintPath>
+      <HintPath>DLLs\MySoft.Institute.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Payment.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MySoft.Libraries\.Net Framework\MySoft.Payment.Entities\bin\Release\MySoft.Payment.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -237,6 +245,7 @@
     <Compile Include="Areas\Administrator\Controllers\EmployeeAttendanceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Administrator\Controllers\LedgerController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\PaymentGateWayController.cs" />
     <Compile Include="Areas\Administrator\Controllers\ProvinceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
     <Compile Include="Areas\Administrator\Controllers\ServiceController.cs" />
@@ -262,6 +271,10 @@
     <Compile Include="Areas\Administrator\Models\TimingViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\UserViewModel.cs" />
     <Compile Include="Areas\Administrator\Models\VoucherTypeViewModel.cs" />
+    <Compile Include="Areas\StudentPortal\Controllers\FeeDepositController.cs" />
+    <Compile Include="Areas\StudentPortal\Controllers\HomeController.cs" />
+    <Compile Include="Areas\StudentPortal\Models\StudentModel.cs" />
+    <Compile Include="Areas\StudentPortal\StudentPortalAreaRegistration.cs" />
     <Compile Include="Code\Variables.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplyController.cs" />
@@ -1828,24 +1841,14 @@
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\EntityFramework.SqlServer.xml" />
     <Content Include="bin\EntityFramework.xml" />
-    <Content Include="bin\Microsoft.AspNet.Authentication.Cookies.dll" />
-    <Content Include="bin\Microsoft.AspNet.Authentication.dll" />
-    <Content Include="bin\Microsoft.AspNet.Cryptography.Internal.dll" />
-    <Content Include="bin\Microsoft.AspNet.Cryptography.KeyDerivation.dll" />
-    <Content Include="bin\Microsoft.AspNet.DataProtection.Abstractions.dll" />
-    <Content Include="bin\Microsoft.AspNet.DataProtection.dll" />
-    <Content Include="bin\Microsoft.AspNet.FileProviders.Abstractions.dll" />
-    <Content Include="bin\Microsoft.AspNet.Hosting.Abstractions.dll" />
-    <Content Include="bin\Microsoft.AspNet.Http.Abstractions.dll" />
-    <Content Include="bin\Microsoft.AspNet.Http.dll" />
-    <Content Include="bin\Microsoft.AspNet.Http.Extensions.dll" />
-    <Content Include="bin\Microsoft.AspNet.Http.Features.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Core.xml" />
     <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.xml" />
     <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Owin.xml" />
+    <Content Include="bin\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="bin\Microsoft.Bcl.AsyncInterfaces.xml" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
@@ -1871,91 +1874,70 @@
     <Content Include="bin\Microsoft.Owin.Security.xml" />
     <Content Include="bin\Microsoft.Owin.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\MySoft.Accounts.Entities.pdb" />
+    <Content Include="bin\MySoft.Accounts.Entities.dll" />
     <Content Include="bin\MySoft.Employee.Entities.dll" />
+    <Content Include="bin\MySoft.Employee.Entities.dll.config" />
     <Content Include="bin\MySoft.Employee.Entities.pdb" />
     <Content Include="bin\MySoft.ErrorLoging.Entities.dll" />
+    <Content Include="bin\MySoft.ErrorLoging.Entities.dll.config" />
     <Content Include="bin\MySoft.ErrorLoging.Entities.pdb" />
     <Content Include="bin\MySoft.Institute.Entities.dll" />
-    <Content Include="bin\MySoft.Institute.Entities.pdb" />
+    <Content Include="bin\MySoft.Payment.Entities.dll" />
+    <Content Include="bin\MySoft.Payment.Entities.pdb" />
     <Content Include="bin\MySoftCorporation.Data.Entities.dll" />
+    <Content Include="bin\MySoftCorporation.Data.Entities.dll.config" />
     <Content Include="bin\MySoftCorporation.Data.Entities.pdb" />
     <Content Include="bin\MySoftCorporation.dll" />
+    <Content Include="bin\MySoftCorporation.dll.config" />
     <Content Include="bin\MySoftCorporation.pdb" />
     <Content Include="bin\MySoftCorporation.Services.dll" />
+    <Content Include="bin\MySoftCorporation.Services.dll.config" />
     <Content Include="bin\MySoftCorporation.Services.pdb" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\Newtonsoft.Json.xml" />
     <Content Include="bin\Owin.dll" />
     <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
     <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
     <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
     <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
     <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
     <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
     <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
     <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
     <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
-    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
-    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\System.Buffers.dll" />
     <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
-    <Content Include="bin\roslyn\System.Console.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
-    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
-    <Content Include="bin\roslyn\System.IO.Compression.dll" />
-    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
-    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
-    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
-    <Content Include="bin\roslyn\System.Net.Http.dll" />
-    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
+    <Content Include="bin\roslyn\System.Memory.dll" />
+    <Content Include="bin\roslyn\System.Numerics.Vectors.dll" />
     <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
-    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
     <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
-    <Content Include="bin\roslyn\System.ValueTuple.dll" />
-    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
-    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
-    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
-    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
     <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
-    <Content Include="bin\System.AppContext.dll" />
-    <Content Include="bin\System.Diagnostics.Tracing.dll" />
-    <Content Include="bin\System.Globalization.Calendars.dll" />
-    <Content Include="bin\System.IO.Compression.dll" />
-    <Content Include="bin\System.IO.Compression.ZipFile.dll" />
-    <Content Include="bin\System.IO.dll" />
-    <Content Include="bin\System.IO.FileSystem.dll" />
-    <Content Include="bin\System.IO.FileSystem.Primitives.dll" />
-    <Content Include="bin\System.Linq.dll" />
-    <Content Include="bin\System.Linq.Expressions.dll" />
-    <Content Include="bin\System.Net.Http.dll" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="bin\System.Buffers.dll" />
+    <Content Include="bin\System.Buffers.xml" />
     <Content Include="bin\System.Net.Http.Formatting.dll" />
     <Content Include="bin\System.Net.Http.Formatting.xml" />
-    <Content Include="bin\System.Net.Sockets.dll" />
-    <Content Include="bin\System.Reflection.dll" />
     <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\System.Runtime.CompilerServices.Unsafe.xml" />
-    <Content Include="bin\System.Runtime.dll" />
-    <Content Include="bin\System.Runtime.Extensions.dll" />
-    <Content Include="bin\System.Runtime.InteropServices.dll" />
-    <Content Include="bin\System.Runtime.InteropServices.RuntimeInformation.dll" />
-    <Content Include="bin\System.Security.Claims.dll" />
-    <Content Include="bin\System.Security.Cryptography.Algorithms.dll" />
-    <Content Include="bin\System.Security.Cryptography.Encoding.dll" />
-    <Content Include="bin\System.Security.Cryptography.Primitives.dll" />
-    <Content Include="bin\System.Security.Cryptography.X509Certificates.dll" />
-    <Content Include="bin\System.Text.RegularExpressions.dll" />
     <Content Include="bin\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\System.Threading.Tasks.Extensions.xml" />
     <Content Include="bin\System.Web.Helpers.dll" />
     <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.xml" />
     <Content Include="bin\System.Web.Mvc.dll" />
     <Content Include="bin\System.Web.Mvc.xml" />
     <Content Include="bin\System.Web.Optimization.dll" />
@@ -1968,7 +1950,6 @@
     <Content Include="bin\System.Web.WebPages.Razor.dll" />
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
-    <Content Include="bin\System.Xml.ReaderWriter.dll" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -2086,6 +2067,8 @@
     <Content Include="dist\js\pages\dashboard2.js" />
     <Content Include="dist\js\pages\dashboard3.js" />
     <Content Include="DLLs\MySoft.Accounts.Entities.dll" />
+    <Content Include="DLLs\MySoft.Institute.Entities.dll" />
+    <Content Include="DLLs\MySoft.Payment.Entities.dll" />
     <Content Include="ErrorLog.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Flex\1.jpeg" />
@@ -3892,20 +3875,6 @@
     <Content Include="Areas\Administrator\Views\Service\_Delete.cshtml" />
     <Content Include="Areas\Administrator\Views\Service\_Listing.cshtml" />
     <Content Include="Areas\Administrator\Views\Service\Index.cshtml" />
-    <Content Include="bin\MySoft.Employee.Entities.dll.config" />
-    <Content Include="bin\MySoftCorporation.Data.Entities.dll.config" />
-    <Content Include="bin\MySoftCorporation.dll.config" />
-    <Content Include="bin\MySoftCorporation.Services.dll.config" />
-    <Content Include="bin\roslyn\csc.exe.config" />
-    <Content Include="bin\roslyn\csc.rsp" />
-    <Content Include="bin\roslyn\csi.exe.config" />
-    <Content Include="bin\roslyn\csi.rsp" />
-    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
-    <Content Include="bin\roslyn\vbc.exe.config" />
-    <Content Include="bin\roslyn\vbc.rsp" />
-    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
@@ -3920,13 +3889,19 @@
     <Content Include="Areas\Administrator\Views\EmployeeAttendance\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\EmployeeAttendance\ClockIn.cshtml" />
     <Content Include="Areas\Administrator\Views\EmployeeAttendance\ClockOut.cshtml" />
-    <Content Include="bin\MySoft.ErrorLoging.Entities.dll.config" />
-    <Content Include="bin\MySoft.Accounts.Entities.dll.config" />
     <Content Include="Areas\Administrator\Views\Ledger\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\AccountType\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\AccountType\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\ChartOfAccount\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\ChartOfAccount\Index.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\web.config" />
+    <Content Include="Areas\StudentPortal\Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\PaymentGateWay\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\PaymentGateWay\_Action.cshtml" />
+    <Content Include="Areas\Administrator\Views\PaymentGateWay\_Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\PaymentGateWay\_Listing.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -4110,6 +4085,8 @@
     <Folder Include="Areas\plugins\filterizr\Spinner\" />
     <Folder Include="Areas\plugins\filterizr\types\interfaces\" />
     <Folder Include="Areas\plugins\filterizr\utils\" />
+    <Folder Include="Areas\StudentPortal\Data\" />
+    <Folder Include="Areas\StudentPortal\Views\FeeDeposit\" />
     <Folder Include="Images\Course\" />
     <Folder Include="Images\Employee\" />
     <Folder Include="Images\User\" />
@@ -4176,8 +4153,11 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

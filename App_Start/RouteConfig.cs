@@ -9,11 +9,17 @@ namespace MySoftCorporation
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
-          name: "MainCourses",
-          url: "Course/{action}/{id}",
-          defaults: new { area = "", controller = "Course", action = "Index", id = UrlParameter.Optional },
-          namespaces: new[] { "MySoftCorporation.Controllers" }
+                  name: "MainCourses",
+                  url: "Course/{action}/{id}",
+                  defaults: new { area = "", controller = "Course", action = "Index", id = UrlParameter.Optional },
+                  namespaces: new[] { "MySoftCorporation.Controllers" }
                 );
+            routes.MapRoute(
+                        "Home_Default",
+                        "{controller}/{action}/{id}",
+                        new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                        new[] { "MySoftCorporation.Controllers" }
+                    );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

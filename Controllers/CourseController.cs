@@ -1,24 +1,26 @@
 ﻿using MySoftCorporation.Models;
 using MySoftCorporation.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MySoftCorporation.Controllers
 {
     public class CourseController : Controller
     {
-        readonly CourseService service = new CourseService();
+        readonly CourseService service ;
+        public CourseController()
+        {
+            service = new CourseService();
+        }
         // GET: Course
-        public ActionResult Index(int? courseID)
+        public async  Task<ActionResult> Index(int? courseID)
         {
             if (courseID != null)
             {
                 CourseViewModels courseViewModel = new CourseViewModels
                 {
-                    Courses = service.Search(courseID).OrderBy(x => x.Fee)
+                    Courses = await service.GetAll()
                 };
                 return View(courseViewModel);
             }
@@ -26,7 +28,7 @@ namespace MySoftCorporation.Controllers
             {
                 CourseViewModels courseViewModel = new CourseViewModels
                 {
-                    Courses = service.GetAll()
+                    Courses = await service.GetAll()
                 };
                 return View(courseViewModel);
             }

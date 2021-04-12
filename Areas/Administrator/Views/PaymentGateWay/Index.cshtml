@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MySoft.Payment.Entities.Models.PaymentGateway>
+@{
+    ViewBag.Title = ViewContext.RouteData.Values["controller"].ToString();
+}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="col-md-12 col-sm-12 col-lg-12" style=" margin-top: 10px;">
+                <form>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" disabled value="" name="SearchTerm" placeholder="Search @ViewContext.RouteData.Values["controller"].ToString() Here " required>
+                        <span class="input-group-append">
+                            <button type="submit" class="btn btn-info btn-sm btn-flat"><i class="fa fa-search mr-1"></i> Search</button>
+                            <a class="btn btn-primary btn-sm btn-flat " href="@Url.Action("Index")"><i class="fa fa-circle mr-1"></i> Reset</a>
+                            <a href="@Url.Action("Action")" class="btn btn-default"> <i class="fa fa-plus mr-1"></i> Create</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model != null && Model.Count() > 0)
+            {
+                Html.RenderPartial("_Listing", Model);
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    <strong>Oops!</strong>No Packages Found in Database
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+<div class="modal fade" id="actionModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-xl" id="formModal">
+
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.card -->
+<div class="modal fade" id="deleteModal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" id="deleteModalContent">
+    </div>
+</div>

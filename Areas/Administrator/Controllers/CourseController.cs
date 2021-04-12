@@ -5,21 +5,21 @@ using MySoftCorporation.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
 {
-    [Authorize(Roles = "General Manager,Administrator")]
-    public class CourseController : Controller
+    public class CourseController : AdminAuthorizeController
     {
         private readonly CourseService service = new CourseService();
         private readonly DashboardService dashboardService = new DashboardService();
 
-        public ActionResult Index(int? courseID)
+        public async Task<ActionResult> Index(int courseID = 0)
         {
             CourseViewModel courseViewModel = new CourseViewModel
             {
-                Courses = service.Search(courseID)
+                Courses = await service.GetAll(courseID)
             };
             return View(courseViewModel);
         }
@@ -27,7 +27,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         [HttpGet]
         public ActionResult Action(int? ID)
         {
-            CourseActionModel model = new CourseActionModel();
+            Course model = new Course();
             if (ID.HasValue)
             {
                 Course course = service.GetByID(ID.Value);
@@ -35,7 +35,6 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 model.Title = course.Title;
                 model.Duration = course.Duration;
                 model.Fee = course.Fee;
-                model.CoursePictures = course.CoursePictures;
             }
             return PartialView("_Action", model);
         }
@@ -44,12 +43,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         public ActionResult Delete(int ID)
         {
             Course course = service.GetByID(ID);
-            CourseActionModel model = new CourseActionModel
-            {
-                ID = course.ID,
-                Title = course.Title
-            };
-            return PartialView("_Delete", model);
+            return PartialView("_Delete", course);
         }
 
         [HttpPost]
@@ -93,12 +87,6 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 objectFirst.Location = UserInfo.Location();
                 try
                 {
-                    objectFirst.CoursePictures.Clear();
-                    List<int> PictureListIDs = (!string.IsNullOrEmpty(model.PictureIDs) ?
-                        model.PictureIDs.Split(',').Select(x => int.Parse(x)).ToList() : new List<int>());
-                    var pictures = dashboardService.GetPictures(PictureListIDs);
-                    objectFirst.CoursePictures = new List<CoursePicture>();
-                    objectFirst.CoursePictures.AddRange(pictures.Select(x => new CoursePicture() { CourseID = model.ID, PictureID = x.ID }));
                     result = service.Update(objectFirst);
                 }
                 catch (Exception exc)
@@ -122,11 +110,6 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 };
                 try
                 {
-                    List<int> PictureListIDs = (!string.IsNullOrEmpty(model.PictureIDs) ?
-                     model.PictureIDs.Split(',').Select(x => int.Parse(x)).ToList() : new List<int>());
-                    var pictures = dashboardService.GetPictures(PictureListIDs);
-                    objectFirst.CoursePictures = new List<CoursePicture>();
-                    objectFirst.CoursePictures.AddRange(pictures.Select(x => new CoursePicture() { PictureID = x.ID }));
                     result = service.Save(objectFirst);
                 }
                 catch (Exception exc)

@@ -11,5 +11,6 @@ namespace MySoftCorporation.Areas.Administrator.Models
         public int Employees { get; set; }
         public int Users { get; set; }
         public int Applications { get; set; }
+        public int Admissions { get; set; }
     }
 }

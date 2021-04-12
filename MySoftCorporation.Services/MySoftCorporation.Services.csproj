@@ -72,9 +72,13 @@
     <Reference Include="MySoft.ErrorLoging.Entities">
       <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.ErrorLoging.Entities\bin\Release\MySoft.ErrorLoging.Entities.dll</HintPath>
     </Reference>
-    <Reference Include="MySoft.Institute.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MySoft.Institute.Entities, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Institute.Entities\bin\Release\MySoft.Institute.Entities.dll</HintPath>
+      <HintPath>..\DLLs\MySoft.Institute.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MySoft.Payment.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Payment.Entities\bin\Release\MySoft.Payment.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -111,6 +115,7 @@
     <Compile Include="Helpers\Pagination.cs" />
     <Compile Include="Helpers\Result.cs" />
     <Compile Include="ICRUDService.cs" />
+    <Compile Include="Payments\PaymentGateWayService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinceService.cs" />
     <Compile Include="RoleManagerService.cs" />

@@ -12,18 +12,19 @@ using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
 {
-    [Authorize(Roles = "General Manager,Administrator")]
-    public class DashboardController : Controller
+    public class DashboardController : AdminAuthorizeController
     {
         private readonly EmployeeService _employeeService;
         private readonly StudentService _studentService;
         private readonly UserService _userService;
+        private readonly AdmissionService _admissionService;
         // GET: Administrator/Dashboard
         public DashboardController()
         {
             _employeeService = new EmployeeService();
             _studentService = new StudentService();;
             _userService = new UserService();
+            _admissionService = new AdmissionService();
         }
         public async Task<ActionResult> Index()
         {
@@ -31,7 +32,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 Employees = await _employeeService.GetCount(),
                 Students = await _studentService.GetCount(),
                 Users = await _userService.GetCount(),
-                Applications = 0
+                Admissions = await _admissionService.GetCount()
             };
             
             return View(model);

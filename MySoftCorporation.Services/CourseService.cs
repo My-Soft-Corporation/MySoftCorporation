@@ -3,26 +3,30 @@ using MySoftCorporation.Data.Entities;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MySoftCorporation.Services
 {
     public class CourseService
     {
-        public IEnumerable<Course> GetAll()
+        private readonly MySoftCorporationDbContext _context;
+        public CourseService()
         {
-            var context = new MySoftCorporationDbContext();
-            return context.Courses.AsEnumerable();
+            _context = new MySoftCorporationDbContext();
+        }
+        public async Task<List<Course>> GetAll(int Id = 0)
+        {
+            if (Id == 0)
+            {
+            return await _context.Courses.OrderBy(x=>x.CategoryID).OrderBy(x=>x.Fee).ToListAsync();
+            }
+            else
+            {
+                return await _context.Courses.Where(x=>x.ID == Id).OrderBy(x => x.CategoryID).OrderBy(x => x.Fee).ToListAsync();
+            }
         }
 
-        public IEnumerable<Course> Search(int? courseID)
-        {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            var course = mySoftCorporationDbContext.Courses.AsQueryable();
-            if (courseID != null)
-                course = course.Where(a => a.ID == courseID);
 
-            return course.AsEnumerable();
-        }
 
         public Course GetByID(int ID)
         {
@@ -41,12 +45,8 @@ namespace MySoftCorporation.Services
 
         public bool Update(Course course)
         {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            var PreviousContext = mySoftCorporationDbContext.Courses.Find(course.ID);
-            mySoftCorporationDbContext.CoursePictures.RemoveRange(PreviousContext.CoursePictures);
-            mySoftCorporationDbContext.Entry(PreviousContext).CurrentValues.SetValues(course);
-            mySoftCorporationDbContext.CoursePictures.AddRange(course.CoursePictures);
-            return mySoftCorporationDbContext.SaveChanges() > 0;
+            _context.Entry(course).State = EntityState.Modified;
+            return _context.SaveChanges() > 0;
         }
 
         public bool Delete(Course course)

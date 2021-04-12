@@ -8,8 +8,7 @@ using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
 {
-    [Authorize(Roles = "General Manager,Administrator")]
-    public class CourseCatagoryController : Controller
+    public class CourseCatagoryController : AdminAuthorizeController
     {
         // GET: Administrator/CourseCatagory
         private readonly CourseCategoryService service = new CourseCategoryService();

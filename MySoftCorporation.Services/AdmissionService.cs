@@ -5,11 +5,21 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MySoftCorporation.Services
 {
     public class AdmissionService
     {
+        private readonly MySoftCorporationDbContext _context;
+        public AdmissionService()
+        {
+            _context = new MySoftCorporationDbContext();
+        }
+        public async Task<int> GetCount()
+        {
+            return await _context.Admissions.CountAsync();
+        }
         public IEnumerable<Admission> GetAdmissons()
         {
             MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();

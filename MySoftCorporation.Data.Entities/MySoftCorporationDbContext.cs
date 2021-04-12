@@ -6,13 +6,16 @@ using MySoft.Employee.Entities;
 using MySoft.Employee.Entities.Attendance;
 using MySoft.Employee.Entities.Helpers;
 using MySoft.Institute.Entities;
+using MySoft.Institute.Entities.Accounts;
+using MySoft.Payment.Entities.Models;
+
 using System.Data.Entity;
 
 namespace MySoftCorporation.Data.Entities
 {
     public class MySoftCorporationDbContext : IdentityDbContext<User>
     {
-        public MySoftCorporationDbContext() : base("ServerOnServer")
+        public MySoftCorporationDbContext() : base("ServerOnLocal")
         {
         }
 
@@ -44,6 +47,8 @@ namespace MySoftCorporation.Data.Entities
         public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<VoucherType> VoucherTypes { get; set; }
         public DbSet<ChartOfAccount> ChartOfAccounts { get; set; }
+        public DbSet<PaymentGateway> PaymentGateways { get; set; }
+        public DbSet<FeePayment> FeePayments { get; set; }
         #endregion
 
         public DbSet<CourseCategory> CourseCategories { get; set; }

@@ -1,0 +1,69 @@
+﻿@model MySoft.Payment.Entities.Models.PaymentGateway
+@{
+    string Controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+@if (Model != null)
+{
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Create</div>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Action", Controller, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.ID)
+                @Html.HiddenFor(x=>x.IP)
+                @Html.HiddenFor(x=>x.Agent)
+                @Html.HiddenFor(x=>x.Location)
+                @Html.HiddenFor(x=>x.UserID)
+                <div class="row">
+                    @Html.ValidationSummary()
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        @Html.LabelFor(x => x.Bank)
+                        @Html.TextBoxFor(x => x.Bank, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x=>x.Bank)
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        @Html.LabelFor(x => x.Branch)
+                        @Html.TextBoxFor(x => x.Branch, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Branch)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        @Html.LabelFor(x => x.AccountTitle)
+                        @Html.TextBoxFor(x => x.AccountTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AccountTitle)
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        @Html.LabelFor(x => x.AccountNumber)
+                        @Html.TextBoxFor(x => x.AccountNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AccountNumber)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        @Html.LabelFor(x => x.PhoneNumber)
+                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.PhoneNumber)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input type="submit" name="Save" value="Save" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/custom-validator")
+    }
+</div>
+
+}

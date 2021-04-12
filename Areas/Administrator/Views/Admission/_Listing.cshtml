@@ -31,7 +31,7 @@
                             <td> @i </td>
                             <td>@item.AdmissionID</td>
                             <td>@item.Student.ID</td>
-                            <td>@item.Student.FirstName</td>
+                            <td>@item.Student.FirstName @item.Student.LastName</td>
                             <td>@item.Course.Title</td>
                             @if (item.IsConfirmed)
                             {
@@ -39,7 +39,6 @@
                             }
                             else
                             {
-
                                 <td>
                                     <button class="dbtn btn-success btn-block btn-flat" onclick="ApproveAdmission(this,@item.AdmissionID)">
                                         <i class="fa fa-eye-dropper mr-1"></i> Approved Now
@@ -47,7 +46,7 @@
                                 </td>
                             }
                             <td>@item.ModifiedOn</td>
-                            <td>@item.UserID</td>
+                            <td>@item.User.UserName</td>
                             <td>@item.IP</td>
                             <td>@item.Agent</td>
                             <td>@item.Location</td>
