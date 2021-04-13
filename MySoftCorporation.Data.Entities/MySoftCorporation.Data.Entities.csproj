@@ -232,6 +232,10 @@
     <Compile Include="Migrations\202104121001485_Course_RemoveRestriction.designer.cs">
       <DependentUpon>202104121001485_Course_RemoveRestriction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104121402465_Table_CourseTimingAdded.cs" />
+    <Compile Include="Migrations\202104121402465_Table_CourseTimingAdded.designer.cs">
+      <DependentUpon>202104121402465_Table_CourseTimingAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySoftCorporationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -357,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104121001485_Course_RemoveRestriction.resx">
       <DependentUpon>202104121001485_Course_RemoveRestriction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104121402465_Table_CourseTimingAdded.resx">
+      <DependentUpon>202104121402465_Table_CourseTimingAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

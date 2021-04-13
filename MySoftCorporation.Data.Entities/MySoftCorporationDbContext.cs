@@ -7,6 +7,7 @@ using MySoft.Employee.Entities.Attendance;
 using MySoft.Employee.Entities.Helpers;
 using MySoft.Institute.Entities;
 using MySoft.Institute.Entities.Accounts;
+using MySoft.Institute.Entities.Models;
 using MySoft.Payment.Entities.Models;
 
 using System.Data.Entity;
@@ -52,5 +53,6 @@ namespace MySoftCorporation.Data.Entities
         #endregion
 
         public DbSet<CourseCategory> CourseCategories { get; set; }
+        public DbSet<CourseTiming> CourseTimings { get; set; }
     }
 }

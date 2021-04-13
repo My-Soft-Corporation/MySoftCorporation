@@ -1,10 +1,12 @@
 ﻿@model MySoft.Institute.Entities.Course
-
+@{ 
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+}
 @if (Model != null && Model.ID > 0)
 {
     <div class="modal-content bg-danger">
         <div class="modal-header">
-            <h4 class="modal-title">Delete @ViewContext.RouteData.Values["controller"].ToString() </h4>
+            <h4 class="modal-title">Delete @controller </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
@@ -13,12 +15,10 @@
             <form id="actionFormDelete">
                 <input type="hidden" value="@Model.ID" name="ID" />
             </form>
-            <p>Are You Sure to Delete  <b>@Model.Title </b>from @ViewContext.RouteData.Values["controller"].ToString() ?</p>
+            <p>Are You Sure to Delete  <b>@Model.Title </b>from @controller ?</p>
             <div id="feedBack">
-
             </div>
         </div>
-
         <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-close mr-1"></i>Close</button>
             <button type="button" id="actionButtonDelete" class="btn btn-danger btn-flat"><i class="fa fa-trash mr-1"></i> Delete</button>
