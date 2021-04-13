@@ -59,8 +59,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLLs\MySoft.Institute.Entities.dll</HintPath>
     </Reference>
-    <Reference Include="MySoft.Payment.Entities">
-      <HintPath>..\..\..\MySoft.Libraries\.Net Framework\MySoft.Payment.Entities\bin\Release\MySoft.Payment.Entities.dll</HintPath>
+    <Reference Include="MySoft.Payment.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLLs\MySoft.Payment.Entities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -236,6 +237,10 @@
     <Compile Include="Migrations\202104121402465_Table_CourseTimingAdded.designer.cs">
       <DependentUpon>202104121402465_Table_CourseTimingAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104131333571_Table_FeePayment_AddColumn.cs" />
+    <Compile Include="Migrations\202104131333571_Table_FeePayment_AddColumn.designer.cs">
+      <DependentUpon>202104131333571_Table_FeePayment_AddColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySoftCorporationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -364,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104121402465_Table_CourseTimingAdded.resx">
       <DependentUpon>202104121402465_Table_CourseTimingAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104131333571_Table_FeePayment_AddColumn.resx">
+      <DependentUpon>202104131333571_Table_FeePayment_AddColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

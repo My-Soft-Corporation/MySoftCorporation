@@ -20,10 +20,9 @@ namespace MySoftCorporation.Services
         {
             return await _context.Admissions.CountAsync();
         }
-        public IEnumerable<Admission> GetAdmissons()
+        public async Task<IEnumerable<Admission>> GetAdmissons()
         {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            return mySoftCorporationDbContext.Admissions.AsEnumerable();
+            return await _context.Admissions.Include(x=>x.Student).Include(x=>x.Course).ToListAsync();
         }
 
         public Admission GetByID(int AdmissionID)
@@ -33,7 +32,12 @@ namespace MySoftCorporation.Services
                 return mySoftCorporationDbContext.Admissions.Where(x => x.AdmissionID == AdmissionID).SingleOrDefault();
             }
         }
-
+        public async Task<Admission> GetLastAdmission(int StudentId)
+        {
+            return  await _context.Admissions.Where(x => x.StudentID == StudentId)
+                .OrderByDescending(x=>x.AdmissionID)
+                .FirstOrDefaultAsync();
+        }
         public (bool IsTrue, string Msg) ApproveAdmission(Admission admission)
         {
             using (var db = new MySoftCorporationDbContext())

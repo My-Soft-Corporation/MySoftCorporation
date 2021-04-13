@@ -80,7 +80,6 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 All = Search(SearchTerm, RoleID, Page.Value, PageSize),
                 Pager = new Pager(0, Page, PageSize)
             };
-
             return View(model);
         }
 

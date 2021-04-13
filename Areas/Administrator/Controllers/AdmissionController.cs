@@ -3,21 +3,24 @@ using MySoftCorporation.Areas.Administrator.Models;
 using MySoftCorporation.Helpers;
 using MySoftCorporation.Services;
 using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
 {
-    [Authorize(Roles = "General Manager,Administrator")]
-    public class AdmissionController : Controller
+    public class AdmissionController : AdminAuthorizeController
     {
-        private readonly AdmissionService service = new AdmissionService();
-
-        // GET: Administrator/Admission
-        public ActionResult Index()
+        private readonly AdmissionService service;
+        public AdmissionController()
+        {
+            service = new AdmissionService();
+        }
+       
+        public async Task<ActionResult> Index()
         {
             AdmissionViewModel admissionViewModel = new AdmissionViewModel
             {
-                Admissions = service.GetAdmissons()
+                Admissions = await service.GetAdmissons()
             };
             return View(admissionViewModel);
         }

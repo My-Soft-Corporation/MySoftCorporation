@@ -70,6 +70,10 @@
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -118,13 +122,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\MySoft.Libraries\.Net Framework\MySoft.Employee.Entities\bin\Release\MySoft.Employee.Entities.dll</HintPath>
     </Reference>
-    <Reference Include="MySoft.Institute.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MySoft.Institute.Entities, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\MySoft.Institute.Entities.dll</HintPath>
     </Reference>
     <Reference Include="MySoft.Payment.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MySoft.Libraries\.Net Framework\MySoft.Payment.Entities\bin\Release\MySoft.Payment.Entities.dll</HintPath>
+      <HintPath>DLLs\MySoft.Payment.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -213,9 +217,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Owin">
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -273,7 +274,10 @@
     <Compile Include="Areas\Administrator\Models\VoucherTypeViewModel.cs" />
     <Compile Include="Areas\StudentPortal\Controllers\FeeDepositController.cs" />
     <Compile Include="Areas\StudentPortal\Controllers\HomeController.cs" />
+    <Compile Include="Areas\StudentPortal\Controllers\StudentAuthorizeController.cs" />
+    <Compile Include="Areas\StudentPortal\Models\FeePaymentModel.cs" />
     <Compile Include="Areas\StudentPortal\Models\StudentModel.cs" />
+    <Compile Include="Areas\StudentPortal\Models\StudentPaymentModel.cs" />
     <Compile Include="Areas\StudentPortal\StudentPortalAreaRegistration.cs" />
     <Compile Include="Code\Variables.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -3902,6 +3906,10 @@
     <Content Include="Areas\Administrator\Views\PaymentGateWay\_Action.cshtml" />
     <Content Include="Areas\Administrator\Views\PaymentGateWay\_Delete.cshtml" />
     <Content Include="Areas\Administrator\Views\PaymentGateWay\_Listing.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\FeeDeposit\Index.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\FeeDeposit\_PaymentGateWayList.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\FeeDeposit\_FeePaymentList.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\FeeDeposit\Confirm.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -4086,7 +4094,6 @@
     <Folder Include="Areas\plugins\filterizr\types\interfaces\" />
     <Folder Include="Areas\plugins\filterizr\utils\" />
     <Folder Include="Areas\StudentPortal\Data\" />
-    <Folder Include="Areas\StudentPortal\Views\FeeDeposit\" />
     <Folder Include="Images\Course\" />
     <Folder Include="Images\Employee\" />
     <Folder Include="Images\User\" />

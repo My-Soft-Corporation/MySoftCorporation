@@ -26,19 +26,19 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x=>x.FirstName)
-                        <input type="text" class="form-control" value="@Model.FirstName" @(Model.FirstName != ""? "readonly": string.Empty) name="FirstName" minlength="3" maxlength="50" required>
+                        <input type="text" class="form-control" value="@Model.FirstName" @(Model.FirstName != null? "readonly": string.Empty) name="FirstName" minlength="3" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.LastName)
-                        <input type="text" class="form-control" value="@Model.LastName" @(Model.LastName != "" ? "readonly" : string.Empty) name="LastName" minlength="2" maxlength="50" required>
+                        <input type="text" class="form-control" value="@Model.LastName" @(Model.LastName != null ? "readonly" : string.Empty) name="LastName" minlength="2" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.CNIC)
-                        <input type="text" class="form-control" data-inputmask="'mask': '99999-9999999-9'" value="@Model.CNIC" @(Model.CNIC != "" ? "readonly" : string.Empty) name="CNIC" minlength="2" maxlength="50" required>
+                        <input type="text" class="form-control" data-inputmask="'mask': '99999-9999999-9'" value="@Model.CNIC" @(Model.CNIC != null ? "readonly" : string.Empty) name="CNIC" minlength="2" maxlength="50" required>
                     </div>
                 </div>
             </div>
@@ -46,19 +46,19 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.FatherName)
-                        <input type="text" @(Model.FatherName != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherCNIC" name="FatherName" minlength="3" maxlength="50" required>
+                        <input type="text" @(Model.FatherName != null ? "readonly" : string.Empty) class="form-control" value="@Model.FatherCNIC" name="FatherName" minlength="3" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.FatherCNIC)
-                        <input type="text" @(Model.FatherCNIC != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherCNIC" data-inputmask="'mask': '99999-9999999-9'" name="FatherCNIC" minlength="2" maxlength="50" required>
+                        <input type="text" @(Model.FatherCNIC != null ? "readonly" : string.Empty) class="form-control" value="@Model.FatherCNIC" data-inputmask="'mask': '99999-9999999-9'" name="FatherCNIC" minlength="2" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.FatherProfession)
-                        <input type="text" @(Model.FatherProfession != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherProfession" name="FatherProfession" minlength="2" maxlength="50" required>
+                        <input type="text" @(Model.FatherProfession != null ? "readonly" : string.Empty) class="form-control" value="@Model.FatherProfession" name="FatherProfession" minlength="2" maxlength="50" required>
                     </div>
                 </div>
             </div>
@@ -66,19 +66,19 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.StudentContact)
-                        <input type="text" @(Model.StudentContact != "" ? "readonly" : string.Empty) class="form-control" value="@Model.StudentContact" name="StudentContact" data-inputmask="'mask': '9999-9999999'" minlength="11" maxlength="20" required>
+                        <input type="text" @(Model.StudentContact != null ? "readonly" : string.Empty) class="form-control" value="@Model.StudentContact" name="StudentContact" data-inputmask="'mask': '9999-9999999'" minlength="11" maxlength="20" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.FatherContact)
-                        <input type="text" @(Model.FatherContact != "" ? "readonly" : string.Empty) class="form-control" value="@Model.FatherContact" name="FatherContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
+                        <input type="text" @(Model.FatherContact != null ? "readonly" : string.Empty) class="form-control" value="@Model.FatherContact" name="FatherContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.EmergencyContact)
-                        <input type="text" @(Model.EmergencyContact != "" ? "readonly" : string.Empty) class="form-control" value="@Model.EmergencyContact" name="EmergencyContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
+                        <input type="text" @(Model.EmergencyContact != null ? "readonly" : string.Empty) class="form-control" value="@Model.EmergencyContact" name="EmergencyContact" data-inputmask="'mask': '9999-9999999'" minlength="2" maxlength="50" required>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.PermenantAddress)
-                        <textarea @(Model.PermenantAddress != "" ? "readonly" : string.Empty) class="form-control" maxlength="100" rows="4" name="PermenantAddress" required>
+                        <textarea @(Model.PermenantAddress != null ? "readonly" : string.Empty) class="form-control" maxlength="100" rows="4" name="PermenantAddress" required>
                             @Model.PermenantAddress</textarea>
                     </div>
                 </div>

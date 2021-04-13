@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MySoft.Payment.Entities.Models.PaymentGateway>
+
+@if (Model != null)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(x => x.Bank)</th>
+                <th>@Html.DisplayNameFor(x => x.AccountTitle)</th>
+                <th>@Html.DisplayNameFor(x => x.AccountNumber)</th>
+                <th>@Html.DisplayNameFor(x => x.PhoneNumber)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Bank</td>
+                <td>@item.AccountTitle</td>
+                <td>@item.AccountNumber</td>
+                <td>@item.PhoneNumber</td>
+                <td>@Html.ActionLink("Confirm", "Confirm", new { id = item.ID })</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+

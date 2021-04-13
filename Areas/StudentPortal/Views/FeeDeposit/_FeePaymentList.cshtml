@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MySoft.Institute.Entities.Accounts.FeePayment>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.PaymentGateway.Bank)</th>
+        <th> @Html.DisplayNameFor(model => model.PaymentGateway.AccountTitle)</th>
+        <th> @Html.DisplayNameFor(model => model.PaymentGateway.AccountNumber)</th>
+        <th> @Html.DisplayNameFor(model => model.Amount)</th>
+        <th> @Html.DisplayNameFor(model => model.DateTime)</th>
+    </tr>
+        @foreach (var item in Model) {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.PaymentGateway.Bank)</td>
+                <td> @Html.DisplayFor(modelItem => item.PaymentGateway.AccountTitle)</td>
+                <td> @Html.DisplayFor(modelItem => item.PaymentGateway.AccountNumber)</td>
+                <td> @Html.DisplayFor(modelItem => item.Amount)</td>
+                <td> @Html.DisplayFor(modelItem => item.DateTime)</td>  
+            </tr>
+        }
+</table>

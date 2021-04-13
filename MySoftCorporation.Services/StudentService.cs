@@ -89,9 +89,7 @@ namespace MySoftCorporation.Services
 
         public Student GetStudentByUserId(string UserID)
         {
-            MySoftCorporationDbContext mySoftCorporationDbContext = new MySoftCorporationDbContext();
-            var Students = mySoftCorporationDbContext.Students.AsQueryable();
-            return Students.Where(a => a.UserID.Contains(UserID)).SingleOrDefault();
+            return _context.Students.Where(a => a.UserID == UserID).SingleOrDefault();
         }
     }
 }

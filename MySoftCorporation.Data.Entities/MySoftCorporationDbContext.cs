@@ -9,7 +9,6 @@ using MySoft.Institute.Entities;
 using MySoft.Institute.Entities.Accounts;
 using MySoft.Institute.Entities.Models;
 using MySoft.Payment.Entities.Models;
-
 using System.Data.Entity;
 
 namespace MySoftCorporation.Data.Entities

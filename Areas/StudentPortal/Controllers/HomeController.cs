@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MySoftCorporation.Areas.StudentPortal.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : StudentAuthorizeController
     {
         private readonly StudentService _studentService;
         public HomeController()

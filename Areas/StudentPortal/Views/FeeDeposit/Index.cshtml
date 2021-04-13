@@ -1,0 +1,42 @@
+﻿@model MySoftCorporation.Areas.StudentPortal.Models.StudentPaymentModel
+@{
+    ViewBag.Title = "Home";
+}
+
+@if (Model != null)
+{
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                Payment Method
+            </div>
+            <div class="row">
+                @if (Model.PaymentGateways.Count > 0)
+                {
+                    @Html.Partial("_PaymentGatewayList",Model.PaymentGateways)
+                }
+                else
+                {
+                    <div class="alert alert-warning">No Payment Method found!</div>
+                }
+            </div>
+        </div>
+        <div class="card-body">
+            <div style="overflow:auto; height:400px;">
+                @if (Model.FeePayments.Count > 0)
+                {
+                    @Html.Partial("_FeePaymentList",Model.FeePayments)
+                }
+                else
+                {
+                    <div class="alert alert-info">No Payment History Found!</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+}
+
+
