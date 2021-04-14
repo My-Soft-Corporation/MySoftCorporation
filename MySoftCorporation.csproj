@@ -250,6 +250,7 @@
     <Compile Include="Areas\Administrator\Controllers\ProvinceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
     <Compile Include="Areas\Administrator\Controllers\ServiceController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\StudentAttendanceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\StudentController.cs" />
     <Compile Include="Areas\Administrator\Controllers\TimingsController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
@@ -274,6 +275,7 @@
     <Compile Include="Areas\Administrator\Models\VoucherTypeViewModel.cs" />
     <Compile Include="Areas\StudentPortal\Controllers\FeeDepositController.cs" />
     <Compile Include="Areas\StudentPortal\Controllers\HomeController.cs" />
+    <Compile Include="Areas\StudentPortal\Controllers\StudentAttendanceController.cs" />
     <Compile Include="Areas\StudentPortal\Controllers\StudentAuthorizeController.cs" />
     <Compile Include="Areas\StudentPortal\Models\FeePaymentModel.cs" />
     <Compile Include="Areas\StudentPortal\Models\StudentModel.cs" />
@@ -3910,6 +3912,12 @@
     <Content Include="Areas\StudentPortal\Views\FeeDeposit\_PaymentGateWayList.cshtml" />
     <Content Include="Areas\StudentPortal\Views\FeeDeposit\_FeePaymentList.cshtml" />
     <Content Include="Areas\StudentPortal\Views\FeeDeposit\Confirm.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\StudentAttendance\ClockIn.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\StudentAttendance\ClockOut.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\StudentAttendance\Index.cshtml" />
+    <Content Include="Areas\StudentPortal\Views\StudentAttendance\_List.cshtml" />
+    <Content Include="Areas\Administrator\Views\StudentAttendance\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\StudentAttendance\_List.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

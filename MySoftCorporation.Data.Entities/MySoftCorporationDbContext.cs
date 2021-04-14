@@ -7,6 +7,7 @@ using MySoft.Employee.Entities.Attendance;
 using MySoft.Employee.Entities.Helpers;
 using MySoft.Institute.Entities;
 using MySoft.Institute.Entities.Accounts;
+using MySoft.Institute.Entities.Attendance;
 using MySoft.Institute.Entities.Models;
 using MySoft.Payment.Entities.Models;
 using System.Data.Entity;
@@ -15,7 +16,7 @@ namespace MySoftCorporation.Data.Entities
 {
     public class MySoftCorporationDbContext : IdentityDbContext<User>
     {
-        public MySoftCorporationDbContext() : base("ServerOnServer")
+        public MySoftCorporationDbContext() : base("ServerOnLocal")
         {
         }
 
@@ -50,7 +51,9 @@ namespace MySoftCorporation.Data.Entities
         public DbSet<PaymentGateway> PaymentGateways { get; set; }
         public DbSet<FeePayment> FeePayments { get; set; }
         #endregion
-
+        #region Student
+        public DbSet<StudentAttendance> StudentAttendances { get; set; }
+        #endregion
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<CourseTiming> CourseTimings { get; set; }
     }

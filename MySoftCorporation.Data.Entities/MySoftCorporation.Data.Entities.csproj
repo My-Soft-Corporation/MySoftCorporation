@@ -241,6 +241,10 @@
     <Compile Include="Migrations\202104131333571_Table_FeePayment_AddColumn.designer.cs">
       <DependentUpon>202104131333571_Table_FeePayment_AddColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104140832459_Table_StudentAttendance.cs" />
+    <Compile Include="Migrations\202104140832459_Table_StudentAttendance.designer.cs">
+      <DependentUpon>202104140832459_Table_StudentAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySoftCorporationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -372,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104131333571_Table_FeePayment_AddColumn.resx">
       <DependentUpon>202104131333571_Table_FeePayment_AddColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104140832459_Table_StudentAttendance.resx">
+      <DependentUpon>202104140832459_Table_StudentAttendance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

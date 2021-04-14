@@ -91,5 +91,9 @@ namespace MySoftCorporation.Services
         {
             return _context.Students.Where(a => a.UserID == UserID).SingleOrDefault();
         }
+        public async Task<Student> GetStudentByUserIdAsync(string UserID)
+        {
+            return await _context.Students.Where(a => a.UserID == UserID).SingleOrDefaultAsync();
+        }
     }
 }

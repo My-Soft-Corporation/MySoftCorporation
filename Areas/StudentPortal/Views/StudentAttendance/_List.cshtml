@@ -1,0 +1,39 @@
+﻿@model   IEnumerable<MySoft.Institute.Entities.Attendance.StudentAttendance>
+
+<div style="overflow:auto;">
+    <table class="table table-custom table-bordered table-hover">
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.Student.FirstName)</th>
+            <th> @Html.DisplayNameFor(model => model.Student.LastName)</th>
+            <th> @Html.DisplayNameFor(model => model.Date) </th>
+            <th> @Html.DisplayNameFor(model => model.ClockIn)</th>
+            <th> @Html.DisplayNameFor(model => model.CheckOut) </th>
+            <th> @Html.DisplayNameFor(model => model.CheckIn)</th>
+            <th> @Html.DisplayNameFor(model => model.ClockOut)</th>
+            <th> @Html.DisplayNameFor(model => model.ModifiedDate)</th>
+            <th> @Html.DisplayNameFor(model => model.Status) </th>
+            <th> @Html.DisplayNameFor(model => model.IP)</th>
+            <th> @Html.DisplayNameFor(model => model.Agent) </th>
+            <th> @Html.DisplayNameFor(model => model.Latitude) </th>
+            <th> @Html.DisplayNameFor(model => model.Longitude)</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.Student.FirstName)</td>
+                <td> @Html.DisplayFor(modelItem => item.Student.LastName) </td>
+                <td> @Html.DisplayFor(modelItem => item.Date)</td>
+                <td> @Html.DisplayFor(modelItem => item.ClockIn)</td>
+                <td> @Html.DisplayFor(modelItem => item.CheckOut) </td>
+                <td> @Html.DisplayFor(modelItem => item.CheckIn) </td>
+                <td> @Html.DisplayFor(modelItem => item.ClockOut)</td>
+                <td> @Html.DisplayFor(modelItem => item.ModifiedDate)</td>
+                <td> @Html.DisplayFor(modelItem => item.Status)</td>
+                <td> @Html.DisplayFor(modelItem => item.IP)</td>
+                <td> @Html.DisplayFor(modelItem => item.Agent)</td>
+                <td> @Html.DisplayFor(modelItem => item.Latitude)</td>
+                <td> @Html.DisplayFor(modelItem => item.Longitude)</td>
+            </tr>
+        }
+    </table>
+</div>

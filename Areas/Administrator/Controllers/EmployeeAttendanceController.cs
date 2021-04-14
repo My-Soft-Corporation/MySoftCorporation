@@ -36,7 +36,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             {
                 return HttpNotFound("Employee Not Found In Database Only Employee Can Give Attendance");
             }
-            return View(await _context.EmployeeAttendances.Where(e => e.EmployeeId == Employee.ID).Include(e => e.Employee).OrderByDescending(x=>x.Id).Take(20).ToListAsync());
+            return View(await _context.EmployeeAttendances.Include(e => e.Employee).OrderByDescending(x=>x.Id).Take(20).ToListAsync());
         }
         public async Task<ActionResult> GiveAttendance()
         {
@@ -96,19 +96,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             {
                 Data = new { IsSuccess = IsTrue, msg = ResponseMSG }
             };
-            return jsonResult;
-     
-        }
-
-
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _context.Dispose();
-            }
-            base.Dispose(disposing);
+            return jsonResult; 
         }
     }
 }

@@ -124,6 +124,7 @@
     <Compile Include="Services\Account\ChartOfAccountService.cs" />
     <Compile Include="Services\EmployeeAttendanceService.cs" />
     <Compile Include="Services\LedgerService.cs" />
+    <Compile Include="Services\Student\StudentAttendanceService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="SignManagerService.cs" />
     <Compile Include="StudentService.cs" />
