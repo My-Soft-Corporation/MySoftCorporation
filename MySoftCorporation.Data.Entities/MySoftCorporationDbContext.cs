@@ -16,7 +16,7 @@ namespace MySoftCorporation.Data.Entities
 {
     public class MySoftCorporationDbContext : IdentityDbContext<User>
     {
-        public MySoftCorporationDbContext() : base("ServerOnLocal")
+        public MySoftCorporationDbContext() : base("ServerOnServer")
         {
         }
 
@@ -53,6 +53,8 @@ namespace MySoftCorporation.Data.Entities
         #endregion
         #region Student
         public DbSet<StudentAttendance> StudentAttendances { get; set; }
+        public DbSet<StudentLedger> StudentLedgers { get; set; }
+        public DbSet<StudentLedgerTransaction> StudentLedgerTransactions { get; set; }
         #endregion
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<CourseTiming> CourseTimings { get; set; }

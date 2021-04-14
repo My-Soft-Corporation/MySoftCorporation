@@ -26,7 +26,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public JsonResult ApproveAdmission(AdmissionActionModel admissionActionModel)
+        public async Task<JsonResult> ApproveAdmission(AdmissionActionModel admissionActionModel)
         {
             JsonResult jsonResult = new JsonResult();
             var OldAdmission = service.GetByID(admissionActionModel.AdmissionID);
@@ -44,7 +44,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     Agent = UserInfo.Agent(),
                     Location = UserInfo.Location()
                 };
-                var (IsTrue, Msg) = service.ApproveAdmission(admission);
+                var (IsTrue, Msg) = await service.ApproveAdmission(admission);
                 jsonResult.Data = new { Success = IsTrue, Message = Msg };
             }
             else

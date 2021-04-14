@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MySoft.Institute.Entities.Accounts.FeePayment>
+@{
+    ViewBag.Title = "Student";
+    string Controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+<div class="col-md-12">
+    <div class="card form-group">
+        <div class="card-header form-group ">
+            <h3 class="card-title">@ViewBag.Title</h3>
+        </div>
+    </div>
+
+    <div class="card form-group">
+        <div class="col-md-12 col-sm-12 col-lg-12" style=" margin-top: 10px;">
+            <form>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" value="" name="SearchTerm" placeholder="Search @Controller Here " required>
+                    <span class="input-group-append">
+                        <button type="submit" class="btn btn-info btn-sm btn-flat"><i class="fa fa-search mr-1"></i> Search</button>
+                        <a class="btn btn-primary btn-sm btn-flat " href="@Url.Action("Index",Controller)"><i class="fa fa-circle mr-1"></i> Reset</a>
+                        <button type="button" data-href="@Url.Action("Action",Controller)" class="data-btn btn btn-default" data-toggle="modal" data-target="#actionModal">
+                            <i class="fa fa-plus mr-1"></i> Create
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        @{Html.RenderPartial("_list", Model);}
+    </div>
+    <!-- /.card-body -->
+</div>
+

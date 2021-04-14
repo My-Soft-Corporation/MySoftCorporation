@@ -30,7 +30,7 @@ namespace MySoftCorporation.Services.Payments
         }
         public async Task<List<FeePayment>> Get()
         {
-            return await _context.FeePayments.ToListAsync();
+            return await _context.FeePayments.Include(x=>x.PaymentGateway).Include(x=>x.Admission).Include(x=>x.Admission.Student).ToListAsync();
         }
         public async Task<(bool IsTrue, string ResponseMsg)> Save(FeePayment feePayment)
         {

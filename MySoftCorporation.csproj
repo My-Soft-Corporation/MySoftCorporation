@@ -252,6 +252,7 @@
     <Compile Include="Areas\Administrator\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\StudentAttendanceController.cs" />
     <Compile Include="Areas\Administrator\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\StudentPaymentController.cs" />
     <Compile Include="Areas\Administrator\Controllers\TimingsController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\Controllers\VoucherController.cs" />
@@ -3918,6 +3919,8 @@
     <Content Include="Areas\StudentPortal\Views\StudentAttendance\_List.cshtml" />
     <Content Include="Areas\Administrator\Views\StudentAttendance\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\StudentAttendance\_List.cshtml" />
+    <Content Include="Areas\Administrator\Views\StudentPayment\_List.cshtml" />
+    <Content Include="Areas\Administrator\Views\StudentPayment\Index.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

@@ -245,6 +245,10 @@
     <Compile Include="Migrations\202104140832459_Table_StudentAttendance.designer.cs">
       <DependentUpon>202104140832459_Table_StudentAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104141122332_Table_StudentLedgerAndStudentLedgerTransactionAdded.cs" />
+    <Compile Include="Migrations\202104141122332_Table_StudentLedgerAndStudentLedgerTransactionAdded.designer.cs">
+      <DependentUpon>202104141122332_Table_StudentLedgerAndStudentLedgerTransactionAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySoftCorporationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -379,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104140832459_Table_StudentAttendance.resx">
       <DependentUpon>202104140832459_Table_StudentAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104141122332_Table_StudentLedgerAndStudentLedgerTransactionAdded.resx">
+      <DependentUpon>202104141122332_Table_StudentLedgerAndStudentLedgerTransactionAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

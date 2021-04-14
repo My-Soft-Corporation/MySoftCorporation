@@ -1,5 +1,8 @@
-﻿using MySoft.Institute.Entities;
+﻿using MySoft.ErrorLoging.Entities;
+using MySoft.Institute.Entities;
+using MySoft.Institute.Entities.Accounts;
 using MySoftCorporation.Data.Entities;
+using MySoftCorporation.Services.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,17 +15,20 @@ namespace MySoftCorporation.Services
     public class AdmissionService
     {
         private readonly MySoftCorporationDbContext _context;
+
         public AdmissionService()
         {
             _context = new MySoftCorporationDbContext();
         }
+
         public async Task<int> GetCount()
         {
             return await _context.Admissions.CountAsync();
         }
+
         public async Task<IEnumerable<Admission>> GetAdmissons()
         {
-            return await _context.Admissions.Include(x=>x.Student).Include(x=>x.Course).ToListAsync();
+            return await _context.Admissions.Include(x => x.Student).Include(x => x.Course).ToListAsync();
         }
 
         public Admission GetByID(int AdmissionID)
@@ -32,18 +38,69 @@ namespace MySoftCorporation.Services
                 return mySoftCorporationDbContext.Admissions.Where(x => x.AdmissionID == AdmissionID).SingleOrDefault();
             }
         }
+
         public async Task<Admission> GetLastAdmission(int StudentId)
         {
-            return  await _context.Admissions.Where(x => x.StudentID == StudentId)
-                .OrderByDescending(x=>x.AdmissionID)
+            return await _context.Admissions.Where(x => x.StudentID == StudentId)
+                .OrderByDescending(x => x.AdmissionID)
                 .FirstOrDefaultAsync();
         }
-        public (bool IsTrue, string Msg) ApproveAdmission(Admission admission)
+
+        public async Task<(bool IsTrue, string Msg)> ApproveAdmission(Admission admission)
         {
-            using (var db = new MySoftCorporationDbContext())
+            using (_context)
             {
-                db.Entry(admission).State = EntityState.Modified;
-                return (db.SaveChanges() > 0, "Success");
+                using (var transaction = _context.Database.BeginTransaction())
+                {
+                    _context.Entry(admission).State = EntityState.Modified;
+                    StudentLedger studentLedger = new StudentLedger()
+                    {
+                        Title = "Account Opened",
+                        Debit = 0,
+                        Credit = 0,
+                        Balance = 0,
+                        IP = admission.IP,
+                        Agent = admission.Agent,
+                        Latitude = admission.Location,
+                        Longitude = admission.Location,
+                        StudentId = admission.StudentID
+                    };
+                    _context.StudentLedgers.Add(studentLedger);
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                        var Ledger = await _context.StudentLedgers.Where(x => x.StudentId == admission.StudentID).SingleOrDefaultAsync();
+                        if (Ledger == null)
+                        {
+                            transaction.Rollback();
+                            return (false, "Unable To Find Ledger");
+                        }
+                        else
+                        {
+                            StudentLedgerTransaction studentLedgerTransaction = new StudentLedgerTransaction()
+                            {
+                                Title = "Account Opened",
+                                Debit = 0,
+                                Credit = 0,
+                                Balance = 0,
+                                IP = admission.IP,
+                                Agent = admission.Agent,
+                                Latitude = admission.Location,
+                                Longitude = admission.Location,
+                                StudentLedgerId = Ledger.Id
+                            };
+                            _context.StudentLedgerTransactions.Add(studentLedgerTransaction);
+                            await _context.SaveChangesAsync();
+                            transaction.Commit();
+                            return (true, Result.Success);
+                        }
+                       
+                    }
+                    catch (Exception exc)
+                    {
+                        return (false, Error.GetDetail(exc));
+                    }
+                }
             }
         }
 

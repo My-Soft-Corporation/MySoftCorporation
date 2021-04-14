@@ -122,6 +122,8 @@
     <Compile Include="RoleManagerService.cs" />
     <Compile Include="Services\Account\AccountTypeService.cs" />
     <Compile Include="Services\Account\ChartOfAccountService.cs" />
+    <Compile Include="Services\Account\StudentLedgerService.cs" />
+    <Compile Include="Services\Account\StudentLedgerTransactionService.cs" />
     <Compile Include="Services\EmployeeAttendanceService.cs" />
     <Compile Include="Services\LedgerService.cs" />
     <Compile Include="Services\Student\StudentAttendanceService.cs" />

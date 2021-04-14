@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MySoft.Institute.Entities.Accounts.FeePayment>
+@{
+    ViewBag.Title = "Fee Payment History";
+}
+<div class="card-body">
+    <div style="overflow:auto;">
+        @if (Model != null && Model.Count() > 0)
+        {
+            <table class="table table-custom table-bordered table-hover">
+                <tr>
+                    <th> @Html.DisplayNameFor(model => model.Admission.AdmissionID)</th>
+                    <th> @Html.DisplayNameFor(model => model.Admission.Student.FirstName)</th>
+                    <th> @Html.DisplayNameFor(model => model.Admission.Student.LastName)</th>
+                    <th> @Html.DisplayNameFor(model => model.PaymentGateway.Bank) </th>
+                    <th> @Html.DisplayNameFor(model => model.DateTime) </th>
+                    <th> @Html.DisplayNameFor(model => model.Amount)</th>
+                    <th> @Html.DisplayNameFor(model => model.IP) </th>
+                    <th> @Html.DisplayNameFor(model => model.Agent)</th>
+                    <th> @Html.DisplayNameFor(model => model.Latitude)</th>
+                    <th> @Html.DisplayNameFor(model => model.Longitude)</th>
+                    <th> Action</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.Admission.AdmissionID)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Admission.Student.FirstName)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Admission.Student.LastName) </td>
+                        <td> @Html.DisplayFor(modelItem => item.PaymentGateway.Bank)</td>
+                        <td> @Html.DisplayFor(modelItem => item.DateTime)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Amount)</td>
+                        <td> @Html.DisplayFor(modelItem => item.IP)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Agent)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Latitude)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Longitude)</td>
+                        <td> @Html.ActionLink("Dis-Approve Payment", "StudentPayment",new { id = item.Id }, new { @class = "btn btn-danger", @disabled="true" })</td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-danger">No Attendance History Found!</div>
+        }
+
+    </div>
+</div>
+
