@@ -68,7 +68,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             JsonResult jsonResult = new JsonResult();
             if (departmentActionModel.ID > 0)
             {
-                departmentActionModel.ModifiedOn = DateTime.Now;
+                departmentActionModel.ModifiedOn = DateTimeHelper.Now();
                 departmentActionModel.UserID = UserHelperInfo.GetUserId();
                 departmentActionModel.IP = UserInfo.IP();
                 departmentActionModel.Agent = UserInfo.Agent();
@@ -82,7 +82,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 {
                     Name = departmentActionModel.Name,
                     Description = departmentActionModel.Description,
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     UserID = UserHelperInfo.GetUserId(),
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),

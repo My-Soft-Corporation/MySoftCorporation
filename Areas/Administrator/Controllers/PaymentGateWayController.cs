@@ -72,7 +72,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Action(PaymentGateway paymentGateway)
         {
-            paymentGateway.ModifiedOn = DateTime.Now;
+            paymentGateway.ModifiedOn = DateTimeHelper.Now();
 
            (bool IsTrue, string Msg) =await _service.Save(paymentGateway);
             if (IsTrue)

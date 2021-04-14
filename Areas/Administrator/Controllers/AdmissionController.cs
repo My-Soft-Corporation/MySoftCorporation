@@ -39,7 +39,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     CourseID = OldAdmission.CourseID,
                     IsConfirmed = true,
                     UserID = UserHelperInfo.GetUserId(),
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),
                     Location = UserInfo.Location()

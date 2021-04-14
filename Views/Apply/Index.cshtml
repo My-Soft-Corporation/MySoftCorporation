@@ -86,7 +86,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         @Html.LabelFor(x => x.DateOfBirth)
-                        <input type="date" class="form-control" value="@(Model.DateOfBirth.ToString("yyyy-MM-dd"))" name="DateOfBirth" min="@DateTime.Now.AddYears(-50).ToString("yyyy-MM-dd")" max="@DateTime.Now.AddYears(-12).ToString("yyyy-MM-dd")" required>
+                        <input type="date" class="form-control" value="@(Model.DateOfBirth.ToString("yyyy-MM-dd"))" name="DateOfBirth" min="@DateTimeHelper.Now().AddYears(-50).ToString("yyyy-MM-dd")" max="@DateTimeHelper.Now().AddYears(-12).ToString("yyyy-MM-dd")" required>
                     </div>
                 </div>
                 <div class="col-sm-4">

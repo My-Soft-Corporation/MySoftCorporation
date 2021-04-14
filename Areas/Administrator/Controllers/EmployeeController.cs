@@ -141,7 +141,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     PresentAddress = model.PresentAddress,
                     PermenantAddress = model.PermenantAddress,
                     Gender = model.Gender,
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),
                     Location = UserInfo.Location(),

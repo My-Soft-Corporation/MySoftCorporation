@@ -58,7 +58,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),
                     Location = UserInfo.Location(),
-                    ModifiedOn = DateTime.Now
+                    ModifiedOn = DateTimeHelper.Now()
                 };
                 DashboardService dashboardService = new DashboardService();
                 if (dashboardService.SavePicture(dbPicture))

@@ -67,7 +67,7 @@ namespace MySoftCorporation.Areas.StudentPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Confirm(FeePayment feePayment)
         {
-                feePayment.ModifiedOn = DateTime.Now;
+                feePayment.ModifiedOn = DateTimeHelper.Now();
                 var (IsTrue, ResponseMsg) = await _feePaymentService.Save(feePayment);
                 if (IsTrue)
                     return RedirectToAction("Index");

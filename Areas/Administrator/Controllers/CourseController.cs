@@ -85,7 +85,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         [Authorize]
         public async Task<ActionResult> Action(Course course)
         {
-            course.ModifiedOn = DateTime.Now;
+            course.ModifiedOn = DateTimeHelper.Now();
             if (ModelState.IsValid)
             {
                 var (isTrue, ResponseMsg) =  await service.Save(course);

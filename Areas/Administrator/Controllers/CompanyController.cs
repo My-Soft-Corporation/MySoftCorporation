@@ -33,7 +33,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 objectFirst.Name = model.Name;
                 objectFirst.Cell = model.Cell;
                 objectFirst.Phone = model.Phone;
-                objectFirst.ModifiedOn = DateTime.Now;
+                objectFirst.ModifiedOn = DateTimeHelper.Now();
                 objectFirst.Email = model.Email;
                 objectFirst.Address = model.Address;
                 objectFirst.UserID = UserHelperInfo.GetUserId();
@@ -60,7 +60,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     Phone = model.Phone,
                     Email = model.Email,
                     Address = model.Address,
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     UserID = UserHelperInfo.GetUserId(),
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),

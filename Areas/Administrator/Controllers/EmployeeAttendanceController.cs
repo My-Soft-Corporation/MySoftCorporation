@@ -71,8 +71,8 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         public async Task<JsonResult> ClockIn(EmployeeAttendance model)
         {
             model.Status = "P";
-            model.ClockIn = DateTime.Now;
-            model.ModifiedDate = DateTime.Now;
+            model.ClockIn = DateTimeHelper.Now();
+            model.ModifiedDate = DateTimeHelper.Now();
             model.Date = DateTime.Today;
             var (IsTrue, ResponseMSG) = await _employeeAttendanceService.ClockInNow(model);
             JsonResult jsonResult = new JsonResult
@@ -85,8 +85,8 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> ClockOut(EmployeeAttendance model)
         {
-            model.ClockOut = DateTime.Now;
-            model.ModifiedDate = DateTime.Now;
+            model.ClockOut = DateTimeHelper.Now();
+            model.ModifiedDate = DateTimeHelper.Now();
             var (IsTrue, ResponseMSG) = await _employeeAttendanceService.ClockOutNow(model);
             JsonResult jsonResult = new JsonResult
             {

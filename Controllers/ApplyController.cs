@@ -79,7 +79,7 @@ namespace MySoftCorporation.Controllers
                 PresentAddress = studentsActionModel.PresentAddress,
                 PermenantAddress = studentsActionModel.PermenantAddress,
                 UserID = UserHelperInfo.GetUserId(),
-                ModifiedOn = DateTime.Now,
+                ModifiedOn = DateTimeHelper.Now(),
                 IP = UserInfo.IP(),
                 Agent = UserInfo.Agent(),
                 Location = UserInfo.Location(),
@@ -92,7 +92,7 @@ namespace MySoftCorporation.Controllers
                 CourseID = studentsActionModel.CourseID,
                 StudentID = studentsActionModel.ID,
                 UserID = UserHelperInfo.GetUserId(),
-                ModifiedOn = DateTime.Now,
+                ModifiedOn = DateTimeHelper.Now(),
                 IP = UserInfo.IP(),
                 Agent = UserInfo.Agent(),
                 Location = UserInfo.Location()

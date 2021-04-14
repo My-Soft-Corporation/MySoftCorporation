@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MySoft.Employee.Entities;
+using MySoftCorporation.Helpers;
 using MySoftCorporation.Models;
 using MySoftCorporation.Services;
 
@@ -186,7 +187,7 @@ namespace MySoftCorporation.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = new User {  UserName = model.UserName, Email = model.Email, DateOfJoined = DateTime.Now};
+                var user = new User {  UserName = model.UserName, Email = model.Email, DateOfJoined = DateTimeHelper.Now()};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

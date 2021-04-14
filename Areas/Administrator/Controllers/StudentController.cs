@@ -134,7 +134,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),
                     Location = UserInfo.Location(),
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     UserID = UserHelperInfo.GetUserId()
                 };
                 try

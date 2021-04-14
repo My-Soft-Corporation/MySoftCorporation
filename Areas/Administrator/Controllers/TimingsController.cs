@@ -55,7 +55,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 model.Number = timing.Number;
                 model.OpeningTime = timing.OpeningTime;
                 model.ClosingTime = timing.ClosingTime;
-                model.ModifiedOn = DateTime.Now;
+                model.ModifiedOn = DateTimeHelper.Now();
                 model.UserID = UserHelperInfo.GetUserId();
                 model.IP = UserInfo.IP();
                 model.Agent = UserInfo.Agent();
@@ -82,7 +82,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     Number = model.Number,
                     OpeningTime = model.OpeningTime,
                     ClosingTime = model.ClosingTime,
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     UserID = UserHelperInfo.GetUserId(),
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),
@@ -118,7 +118,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                     Number = model.Number,
                     OpeningTime = model.OpeningTime,
                     ClosingTime = model.ClosingTime,
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     UserID = UserHelperInfo.GetUserId(),
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),

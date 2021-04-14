@@ -85,7 +85,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 Agent = UserInfo.Agent(),
                 Longitude = model.Longitude,
                 Latitude = model.Latitude,
-                ModifiedOn = DateTime.Now
+                ModifiedOn = DateTimeHelper.Now()
             };
             string msg = "";
             if (model.Id > 0)

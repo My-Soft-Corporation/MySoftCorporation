@@ -62,7 +62,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 objectFirst.ID = model.ID;
                 objectFirst.Name = model.Name;
                 objectFirst.UserID = UserHelperInfo.GetUserId();
-                objectFirst.ModifiedOn = DateTime.Now;
+                objectFirst.ModifiedOn = DateTimeHelper.Now();
                 objectFirst.IP = UserInfo.IP();
                 objectFirst.Agent = UserInfo.Agent();
                 objectFirst.Location = UserInfo.Location();
@@ -74,7 +74,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                 {
                     Name = model.Name,
                     UserID = UserHelperInfo.GetUserId(),
-                    ModifiedOn = DateTime.Now,
+                    ModifiedOn = DateTimeHelper.Now(),
                     IP = UserInfo.IP(),
                     Agent = UserInfo.Agent(),
                     Location = UserInfo.Location()
