@@ -31,8 +31,8 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         {
             string UserID = UserHelperInfo.GetUserId();
             var Employee = await _employeeService.GetByUserID(UserID);
-            var employeeAttendances = _context.EmployeeAttendances.Where(e=>e.EmployeeId == Employee.ID).Include(e => e.Employee).Include(e => e.TakenBy).Take(50);
-            return View(await employeeAttendances.ToListAsync());
+            var employeeAttendances = _context.EmployeeAttendances.Where(e=>e.EmployeeId == Employee.ID).Include(e => e.Employee).Take(10);
+            return View(employeeAttendances.ToList());
         }
         public async Task<ActionResult> GiveAttendance()
         {
