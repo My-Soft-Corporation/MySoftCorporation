@@ -15,7 +15,7 @@ using MySoftCorporation.Services.Services;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
 {
-    public class EmployeeAttendanceController : Controller
+    public class EmployeeAttendanceController : AdminAuthorizeController
     {
         private readonly MySoftCorporationDbContext _context;
         private readonly EmployeeService _employeeService;
@@ -27,12 +27,16 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             _employeeAttendanceService = new EmployeeAttendanceService();
         }
         // GET: Administrator/EmployeeAttendance
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             string UserID = UserHelperInfo.GetUserId();
             var Employee = await _employeeService.GetByUserID(UserID);
-            var employeeAttendances = _context.EmployeeAttendances.Where(e=>e.EmployeeId == Employee.ID).Include(e => e.Employee).Take(10);
-            return View(employeeAttendances.ToList());
+            if (Employee == null)
+            {
+                return HttpNotFound("Employee Not Found In Database Only Employee Can Give Attendance");
+            }
+            return View(await _context.EmployeeAttendances.Where(e => e.EmployeeId == Employee.ID).Include(e => e.Employee).OrderByDescending(x=>x.Id).Take(20).ToListAsync());
         }
         public async Task<ActionResult> GiveAttendance()
         {
