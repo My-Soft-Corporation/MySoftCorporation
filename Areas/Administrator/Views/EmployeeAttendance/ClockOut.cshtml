@@ -34,6 +34,8 @@
 <script>
     $(document).ready(function () {
         $("#ClockOutButton").click(function (e) {
+            var Button = $(this);
+            Button.prop("disabled", true);
             $("#FeedBack").html("<div class='alert alert-warning'>Wait ! Make you present in while</div>");
             $.ajax({
                 type: "POST",
@@ -44,6 +46,7 @@
                         window.location.replace("@Url.Action("Index")");
                     }
                     else {
+                        Button.prop("disabled", false);
                         $("#FeedBack").html("<div class='alert alert-danger'>"+response.msg+"</div>");
                     }
                 }
