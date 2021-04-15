@@ -23,7 +23,7 @@ namespace MySoftCorporation.Services.Services
         }
         public async Task<List<EmployeeAttendance>> GetEmployeeAttendances()
         {
-            return await _context.EmployeeAttendances.Include(x => x.Employee).OrderByDescending(x => x.Id).Take(50).ToListAsync();
+            return await _context.EmployeeAttendances.Include(x => x.Employee).OrderByDescending(x=>x.Id).Take(50).ToListAsync();
         }
         public async Task<(bool IsTrue,string ResponseMSG)> ClockOutNow(EmployeeAttendance model)
         {

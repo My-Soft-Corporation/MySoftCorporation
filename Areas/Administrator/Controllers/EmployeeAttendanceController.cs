@@ -29,13 +29,14 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             }
             return View(await _employeeAttendanceService.GetEmployeeAttendances());
         }
+        [Authorize]
         public async Task<ActionResult> GiveAttendance()
         {
             string UserID = UserHelperInfo.GetUserId();
-            var Employee =await _employeeService.GetByUserID(UserID);
+            var Employee = await _employeeService.GetByUserID(UserID);
             if (Employee != null)
             {
-                var todayAttendance = _employeeAttendanceService.GetTodayAttendance(Employee.ID);
+                var todayAttendance = await _employeeAttendanceService.GetTodayAttendance(Employee.ID);
                 if (todayAttendance == null)
                 {
                     EmployeeAttendance employeeAttendance = new EmployeeAttendance()
@@ -63,6 +64,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<JsonResult> ClockIn(EmployeeAttendance model)
         {
             model.Status = "P";
@@ -78,6 +80,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<JsonResult> ClockOut(EmployeeAttendance model)
         {
             model.ClockOut = DateTimeHelper.Now();
