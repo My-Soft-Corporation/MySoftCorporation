@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using MySoft.Employee.Entities.Attendance;
-using MySoftCorporation.Data.Entities;
 using MySoftCorporation.Services;
 using MySoftCorporation.Helpers;
 using MySoftCorporation.Services.Services;
@@ -17,13 +10,11 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
 {
     public class EmployeeAttendanceController : AdminAuthorizeController
     {
-        private readonly MySoftCorporationDbContext _context;
         private readonly EmployeeService _employeeService;
         private readonly EmployeeAttendanceService _employeeAttendanceService; 
         public EmployeeAttendanceController()
         {
             _employeeService = new EmployeeService();
-            _context = new MySoftCorporationDbContext();
             _employeeAttendanceService = new EmployeeAttendanceService();
         }
         // GET: Administrator/EmployeeAttendance
@@ -36,7 +27,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             {
                 return HttpNotFound("Employee Not Found In Database Only Employee Can Give Attendance");
             }
-            return View(await _context.EmployeeAttendances.Include(e => e.Employee).OrderByDescending(x=>x.Id).Take(20).ToListAsync());
+            return View(await _employeeAttendanceService.GetEmployeeAttendances());
         }
         public async Task<ActionResult> GiveAttendance()
         {
@@ -44,7 +35,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             var Employee =await _employeeService.GetByUserID(UserID);
             if (Employee != null)
             {
-                var todayAttendance = await _context.EmployeeAttendances.Where(x => x.Date == DateTime.Today && x.EmployeeId == Employee.ID).SingleOrDefaultAsync();
+                var todayAttendance = _employeeAttendanceService.GetTodayAttendance(Employee.ID);
                 if (todayAttendance == null)
                 {
                     EmployeeAttendance employeeAttendance = new EmployeeAttendance()

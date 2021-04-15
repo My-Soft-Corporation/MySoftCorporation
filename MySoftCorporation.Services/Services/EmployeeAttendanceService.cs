@@ -17,6 +17,14 @@ namespace MySoftCorporation.Services.Services
         {
             _context = new MySoftCorporationDbContext();
         }
+        public async Task<EmployeeAttendance> GetTodayAttendance(int EmployeeId)
+        {
+           return await _context.EmployeeAttendances.Where(x => x.Date == DateTime.Today && x.EmployeeId == EmployeeId).SingleOrDefaultAsync();
+        }
+        public async Task<List<EmployeeAttendance>> GetEmployeeAttendances()
+        {
+            return await _context.EmployeeAttendances.Include(x => x.Employee).OrderByDescending(x => x.Id).Take(50).ToListAsync();
+        }
         public async Task<(bool IsTrue,string ResponseMSG)> ClockOutNow(EmployeeAttendance model)
         {
             try
