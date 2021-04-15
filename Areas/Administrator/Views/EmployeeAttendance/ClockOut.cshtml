@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Clock or Check Out</div>
+            <div class="card-title">Clock Out or Check Out</div>
         </div>
         <div class="card-body">
             @using (Html.BeginForm("ClockOut", "EmployeeAttendance", FormMethod.Post,new { @id = "myForm" }))
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <button class="btn btn-primary" id="ClockOutButton">Clock Me In Now</button>
+            <button class="btn btn-primary" id="ClockOutButton">Click Here to Clock Out </button>
         </div>
     </div>
 </div>
@@ -36,7 +36,7 @@
         $("#ClockOutButton").click(function (e) {
             var Button = $(this);
             Button.prop("disabled", true);
-            $("#FeedBack").html("<div class='alert alert-warning'>Wait ! Make you present in while</div>");
+            $("#FeedBack").html("<div class='alert alert-warning'>Wait ! Make you leave in while</div>");
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("ClockOut")",

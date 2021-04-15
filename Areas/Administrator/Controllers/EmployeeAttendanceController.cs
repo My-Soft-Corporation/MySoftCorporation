@@ -67,7 +67,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         [Authorize]
         public async Task<JsonResult> ClockIn(EmployeeAttendance model)
         {
-            model.Status = "P";
+            model.Status = "N/A";
             model.ClockIn = DateTimeHelper.Now();
             model.ModifiedDate = DateTimeHelper.Now();
             model.Date = DateTime.Today;
@@ -85,12 +85,26 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         {
             model.ClockOut = DateTimeHelper.Now();
             model.ModifiedDate = DateTimeHelper.Now();
+            model.Status = "P";
             var (IsTrue, ResponseMSG) = await _employeeAttendanceService.ClockOutNow(model);
             JsonResult jsonResult = new JsonResult
             {
                 Data = new { IsSuccess = IsTrue, msg = ResponseMSG }
             };
             return jsonResult; 
+        }
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult> Delete(int Id)
+        {
+            var (IsTrue, Msg) = await _employeeAttendanceService.Delete(Id);
+            if (IsTrue)
+            {
+              return RedirectToAction("Index");
+            }
+            else
+            {
+                return HttpNotFound(Msg);
+            }
         }
     }
 }

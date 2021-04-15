@@ -3921,6 +3921,7 @@
     <Content Include="Areas\Administrator\Views\StudentAttendance\_List.cshtml" />
     <Content Include="Areas\Administrator\Views\StudentPayment\_List.cshtml" />
     <Content Include="Areas\Administrator\Views\StudentPayment\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\EmployeeAttendance\_List.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

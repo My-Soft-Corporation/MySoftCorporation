@@ -1,6 +1,7 @@
 ﻿using MySoft.Employee.Entities.Attendance;
 using MySoft.ErrorLoging.Entities;
 using MySoftCorporation.Data.Entities;
+using MySoftCorporation.Services.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -40,14 +41,33 @@ namespace MySoftCorporation.Services.Services
         public async Task<(bool IsTrue, string ResponseMSG)> ClockInNow(EmployeeAttendance model)
         {
             try
-            {
-               
+            {              
                 _context.EmployeeAttendances.Add(model);
                 return (await _context.SaveChangesAsync() > 0, "Success");
             }
             catch (Exception exc)
             {
                 return (false, Error.GetDetail(exc));
+            }
+        }
+        public async Task<(bool IsTrue, String Msg)> Delete(int AttendanceId)
+        {
+            var Attendance = await _context.EmployeeAttendances.FindAsync(AttendanceId);
+            if (Attendance != null)
+            {
+                _context.Entry(Attendance).State = EntityState.Deleted;
+                try
+                {
+                    return (await _context.SaveChangesAsync() > 0, Result.Success);
+                }
+                catch (Exception exc)
+                {
+                    return (false, Error.GetDetail(exc));
+                }
+            }
+            else
+            {
+                return (false, "Attendance Not Found In DB");
             }
         }
         
