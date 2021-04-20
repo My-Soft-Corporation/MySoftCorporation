@@ -4,7 +4,6 @@
     ViewBag.Title = "Log in";
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +21,7 @@
     <link rel="stylesheet" href="~/Areas/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Areas/dist/css/adminlte.min.css">
+    <link href="~/Areas/css/Style.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -35,60 +35,45 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 @Html.ValidationSummary()
-                <form action="@Url.Action("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl })" method="post">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                {
                     @Html.AntiForgeryToken()
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="Email" id="Email" required placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="Password" id="Password" class="form-control" required placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                    <div class="row">
+                        @Html.LabelFor(x => x.Email)
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="RememberMe" name="RememberMe">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
+                        @Html.LabelFor(x => x.Password)
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type = "password" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
                             </div>
                         </div>
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
-                        </div>
-                        <!-- /.col -->
                     </div>
-                </form>
 
-                @*<div class="social-auth-links text-center mb-3">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                    </a>
-                </div>*@
-                <!-- /.social-auth-links -->
-
-                <p class="mb-1">
-                    <a href="@Url.Action("ForgotPassword")">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="@Url.Action("Register")" class="text-center">Register a new membership</a>
-                </p>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                @Html.CheckBoxFor(x => x.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                    </div>
+                }
             </div>
-            <!-- /.login-card-body -->
         </div>
     </div>
     <!-- /.login-box -->
@@ -98,59 +83,8 @@
     <script src="~/Areas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Areas/dist/js/adminlte.min.js"></script>
-
 </body>
 </html>
-
-@*<div class="container" style="
-    margin: 50px;
-">
-
-    <div class="col-md-8">
-        <h2>@ViewBag.Title.</h2>
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-primary btn-lg" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                <p>
-                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                </p>
-            }
-        </section>
-    </div>
-</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -27,7 +27,7 @@ namespace MySoftCorporation.Data.Entities
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<EmployeeAttendance> EmployeeAttendances{ get; set; }
+        public DbSet<EmployeeAttendance> EmployeeAttendances { get; set; }
         public DbSet<Term> Terms { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
@@ -42,7 +42,9 @@ namespace MySoftCorporation.Data.Entities
         public DbSet<UserPicture> UserPictures { get; set; }
         public DbSet<EmployeePicture> EmployeePictures { get; set; }
         public DbSet<Admission> Admissions { get; set; }
+
         #region Accounts
+
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Ledger> Ledgers { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
@@ -50,12 +52,17 @@ namespace MySoftCorporation.Data.Entities
         public DbSet<ChartOfAccount> ChartOfAccounts { get; set; }
         public DbSet<PaymentGateway> PaymentGateways { get; set; }
         public DbSet<FeePayment> FeePayments { get; set; }
-        #endregion
+
+        #endregion Accounts
+
         #region Student
+
         public DbSet<StudentAttendance> StudentAttendances { get; set; }
         public DbSet<StudentLedger> StudentLedgers { get; set; }
         public DbSet<StudentLedgerTransaction> StudentLedgerTransactions { get; set; }
-        #endregion
+
+        #endregion Student
+
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<CourseTiming> CourseTimings { get; set; }
     }

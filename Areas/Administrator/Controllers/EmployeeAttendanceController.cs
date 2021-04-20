@@ -8,32 +8,32 @@ using MySoftCorporation.Services.Services;
 
 namespace MySoftCorporation.Areas.Administrator.Controllers
 {
-    public class EmployeeAttendanceController : AdminAuthorizeController
+    [Authorize]
+    public class EmployeeAttendanceController : Controller
     {
-        private readonly EmployeeService _employeeService;
-        private readonly EmployeeAttendanceService _employeeAttendanceService; 
+        private EmployeeAttendanceService _employeeAttendanceService;
+
         public EmployeeAttendanceController()
         {
-            _employeeService = new EmployeeService();
             _employeeAttendanceService = new EmployeeAttendanceService();
         }
-        // GET: Administrator/EmployeeAttendance
+
         [Authorize]
         public async Task<ActionResult> Index()
         {
             string UserID = UserHelperInfo.GetUserId();
-            var Employee = await _employeeService.GetByUserID(UserID);
-            if (Employee == null)
+            if (!await _employeeAttendanceService.IsEmployee(UserID))
             {
                 return HttpNotFound("Employee Not Found In Database Only Employee Can Give Attendance");
             }
             return View(await _employeeAttendanceService.GetEmployeeAttendances());
         }
+
         [Authorize]
         public async Task<ActionResult> GiveAttendance()
         {
             string UserID = UserHelperInfo.GetUserId();
-            var Employee = await _employeeService.GetByUserID(UserID);
+            var Employee = await _employeeAttendanceService.GetEmployee(UserID);
             if (Employee != null)
             {
                 var todayAttendance = await _employeeAttendanceService.GetTodayAttendance(Employee.ID);
@@ -47,7 +47,6 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
                         Longitude = "N/A",
                         TakenById = Employee.ID,
                         EmployeeId = Employee.ID
-
                     };
                     return View("ClockIn", employeeAttendance);
                 }
@@ -60,8 +59,8 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             {
                 return new HttpNotFoundResult();
             }
-         
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -78,6 +77,7 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             };
             return jsonResult;
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -91,20 +91,34 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
             {
                 Data = new { IsSuccess = IsTrue, msg = ResponseMSG }
             };
-            return jsonResult; 
+            return jsonResult;
         }
+
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Delete(int Id)
         {
             var (IsTrue, Msg) = await _employeeAttendanceService.Delete(Id);
             if (IsTrue)
             {
-              return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             else
             {
                 return HttpNotFound(Msg);
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_employeeAttendanceService != null)
+                {
+                    _employeeAttendanceService = null;
+                }
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
