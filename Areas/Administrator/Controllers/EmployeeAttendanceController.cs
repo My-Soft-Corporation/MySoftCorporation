@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using MySoft.Employee.Entities.Attendance;
-using MySoftCorporation.Services;
 using MySoftCorporation.Helpers;
 using MySoftCorporation.Services.Services;
 
@@ -19,14 +18,19 @@ namespace MySoftCorporation.Areas.Administrator.Controllers
         }
 
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> GetList()
         {
             string UserID = UserHelperInfo.GetUserId();
             if (!await _employeeAttendanceService.IsEmployee(UserID))
             {
                 return HttpNotFound("Employee Not Found In Database Only Employee Can Give Attendance");
             }
-            return View(await _employeeAttendanceService.GetEmployeeAttendances());
+            return View("_List", await _employeeAttendanceService.GetEmployeeAttendances());
         }
 
         [Authorize]

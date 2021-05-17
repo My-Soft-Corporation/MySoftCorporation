@@ -56,7 +56,7 @@ namespace MySoftCorporation.Services.Services
 
         public async Task<List<EmployeeAttendance>> GetEmployeeAttendances()
         {
-            return await _context.EmployeeAttendances.Include(x => x.Employee).OrderByDescending(x => x.Id).Take(50).ToListAsync();
+            return await _context.EmployeeAttendances.Include(x => x.Employee).Include(x => x.TakenBy).OrderByDescending(x => x.Id).Take(30).ToListAsync();
         }
 
         public async Task<(bool IsTrue, string ResponseMSG)> ClockOutNow(EmployeeAttendance model)
@@ -85,7 +85,7 @@ namespace MySoftCorporation.Services.Services
             }
         }
 
-        public async Task<(bool IsTrue, String Msg)> Delete(int AttendanceId)
+        public async Task<(bool IsTrue, string Msg)> Delete(int AttendanceId)
         {
             var Attendance = await _context.EmployeeAttendances.FindAsync(AttendanceId);
             if (Attendance != null)
